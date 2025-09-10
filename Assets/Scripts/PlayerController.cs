@@ -25,6 +25,8 @@ public class VRPlayerController : MonoBehaviour
     private float currentBoostSpeed = 0f; // velocidad actual al usar trigger
     private Vector3 boostDirection = Vector3.zero; // última dirección usada
 
+    public bool isAccelerating = false;   // Actívalo desde otro script o el Inspector
+    public Transform targetObject;        // Objeto cuya Z+ define la dirección
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -49,7 +51,7 @@ public class VRPlayerController : MonoBehaviour
         Vector3 direction = forward * input.y + right * input.x;
         characterController.Move(direction * moveSpeed * Time.deltaTime);
 
-        acceleratePlane();
+        AcceleratePlane();
 
         // Aplicar boost (si hay velocidad)
         if (currentBoostSpeed > 0.01f)
@@ -73,24 +75,42 @@ public class VRPlayerController : MonoBehaviour
         characterController.center = new Vector3(capsuleCenter.x, characterController.height / 2 + characterController.skinWidth, capsuleCenter.z);
     }
 
-    public void acceleratePlane()
+    
+
+    public void AcceleratePlane()
     {
-        // --- Boost con Trigger ---
-        float triggerValue = triggerAction.action.ReadValue<float>(); // valor 0-1
-        if (triggerValue > 0.1f) // Si se mantiene presionado
+        if (isAccelerating)
         {
             // Acelera progresivamente hasta el máximo
-            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, maxBoostSpeed, acceleration * Time.deltaTime);
+            currentBoostSpeed = Mathf.MoveTowards(
+                currentBoostSpeed, 
+                maxBoostSpeed, 
+                acceleration * Time.deltaTime
+            );
 
-            // Dirección siempre hacia el eje Z local del objeto
-            boostDirection = transform.forward;
-            boostDirection.y = 0;
-            boostDirection.Normalize();
+            // Dirección siempre hacia el eje Z local del objeto asignado
+            if (targetObject != null)
+            {
+                boostDirection = targetObject.forward;
+                boostDirection.y = 0; // si quieres ignorar inclinación vertical
+                boostDirection.Normalize();
+            }
         }
         else
         {
-            // Si se suelta, desaceleramos hasta 0
-            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, 0, deceleration * Time.deltaTime);
+            // Si no está activo, desaceleramos progresivamente hasta 0
+            currentBoostSpeed = Mathf.MoveTowards(
+                currentBoostSpeed, 
+                0, 
+                deceleration * Time.deltaTime
+            );
+        }
+
+        // Aplicamos movimiento si hay velocidad
+        if (currentBoostSpeed > 0.01f)
+        {
+            characterController.Move(boostDirection * currentBoostSpeed * Time.deltaTime);
         }
     }
+
 }

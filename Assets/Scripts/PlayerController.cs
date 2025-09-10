@@ -49,23 +49,7 @@ public class VRPlayerController : MonoBehaviour
         Vector3 direction = forward * input.y + right * input.x;
         characterController.Move(direction * moveSpeed * Time.deltaTime);
 
-        // --- Boost con Trigger ---
-        float triggerValue = triggerAction.action.ReadValue<float>(); // valor 0-1
-        if (triggerValue > 0.1f) // Si se mantiene presionado
-        {
-            // Acelera progresivamente hasta el máximo
-            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, maxBoostSpeed, acceleration * Time.deltaTime);
-
-            // Dirección siempre hacia el eje Z local del objeto
-            boostDirection = transform.forward;
-            boostDirection.y = 0;
-            boostDirection.Normalize();
-        }
-        else
-        {
-            // Si se suelta, desaceleramos hasta 0
-            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, 0, deceleration * Time.deltaTime);
-        }
+        acceleratePlane();
 
         // Aplicar boost (si hay velocidad)
         if (currentBoostSpeed > 0.01f)
@@ -87,5 +71,26 @@ public class VRPlayerController : MonoBehaviour
 
         Vector3 capsuleCenter = transform.InverseTransformPoint(xrHead.position);
         characterController.center = new Vector3(capsuleCenter.x, characterController.height / 2 + characterController.skinWidth, capsuleCenter.z);
+    }
+
+    public void acceleratePlane()
+    {
+        // --- Boost con Trigger ---
+        float triggerValue = triggerAction.action.ReadValue<float>(); // valor 0-1
+        if (triggerValue > 0.1f) // Si se mantiene presionado
+        {
+            // Acelera progresivamente hasta el máximo
+            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, maxBoostSpeed, acceleration * Time.deltaTime);
+
+            // Dirección siempre hacia el eje Z local del objeto
+            boostDirection = transform.forward;
+            boostDirection.y = 0;
+            boostDirection.Normalize();
+        }
+        else
+        {
+            // Si se suelta, desaceleramos hasta 0
+            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, 0, deceleration * Time.deltaTime);
+        }
     }
 }

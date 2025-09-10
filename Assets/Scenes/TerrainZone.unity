@@ -352,7 +352,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677456755}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
@@ -808,7 +808,7 @@ MonoBehaviour:
   gravity: -9.81
   additionalHeight: 0.2
   triggerAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Trigger
       m_Type: 0
@@ -818,9 +818,10 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -440298646266941818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   maxBoostSpeed: 6
   acceleration: 5
+  deceleration: 4
   moveAction:
     m_UseReference: 0
     m_Action:

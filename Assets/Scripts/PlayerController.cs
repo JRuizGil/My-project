@@ -35,9 +35,6 @@ public class VRPlayerController : MonoBehaviour
 
     void Update()
     {
-        // --- Ajustar altura del capsule al jugador ---
-        UpdateCharacterHeight();
-
         // --- Movimiento con joystick (dirección relativa al head) ---
         Vector2 input = moveAction.action.ReadValue<Vector2>();
         Vector3 forward = xrHead.forward;
@@ -65,16 +62,6 @@ public class VRPlayerController : MonoBehaviour
 
         characterController.Move(Vector3.up * fallingSpeed * Time.deltaTime);
     }
-
-    void UpdateCharacterHeight()
-    {
-        float headHeight = Mathf.Clamp(xrHead.localPosition.y, 1, 2);
-        characterController.height = headHeight + additionalHeight;
-
-        Vector3 capsuleCenter = transform.InverseTransformPoint(xrHead.position);
-        characterController.center = new Vector3(capsuleCenter.x, characterController.height / 2 + characterController.skinWidth, capsuleCenter.z);
-    }
-
     
 
     public void AcceleratePlane()

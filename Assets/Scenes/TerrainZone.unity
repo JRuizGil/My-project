@@ -792,6 +792,11 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.68327713
   m_Center: {x: 0, y: 0.18327713, z: 0}
+--- !u!4 &1186826540 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8298045291338814965, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 1364318282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1186826541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,6 +851,8 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
+  isAccelerating: 0
+  targetObject: {fileID: 1186826540}
 --- !u!1 &1237853114
 GameObject:
   m_ObjectHideFlags: 0

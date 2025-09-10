@@ -25,7 +25,6 @@ public class VRPlayerController : MonoBehaviour
     private float currentBoostSpeed = 0f; // velocidad actual al usar trigger
     private Vector3 boostDirection = Vector3.zero; // última dirección usada
 
-    public bool isAccelerating = false;   // Actívalo desde otro script o el Inspector
     public Transform targetObject;        // Objeto cuya Z+ define la dirección
     void Start()
     {
@@ -48,7 +47,7 @@ public class VRPlayerController : MonoBehaviour
         Vector3 direction = forward * input.y + right * input.x;
         characterController.Move(direction * moveSpeed * Time.deltaTime);
 
-        AcceleratePlane();
+        
 
         // Aplicar boost (si hay velocidad)
         if (currentBoostSpeed > 0.01f)
@@ -62,11 +61,15 @@ public class VRPlayerController : MonoBehaviour
 
         characterController.Move(Vector3.up * fallingSpeed * Time.deltaTime);
     }
-    
+
+    public bool isAccelerating()
+    {
+        return true;
+    }
 
     public void AcceleratePlane()
     {
-        if (isAccelerating)
+        if (isAccelerating())
         {
             // Acelera progresivamente hasta el máximo
             currentBoostSpeed = Mathf.MoveTowards(

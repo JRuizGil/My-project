@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 1007984628}
   - component: {fileID: 1007984627}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Reactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -587,7 +587,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PrimaryReactor
   watcher: {fileID: 1278525202}
-  IsPressed: 0
+  listenPrimary: 1
+  listenSecondary: 1
+  listenGrip: 1
+  listenTrigger: 1
+  listenJoystickClick: 1
+  isPressed: 0
   rotationAngle: {x: 45, y: 45, z: 45}
   rotationDuration: 0.25
 --- !u!4 &1007984628
@@ -768,7 +773,7 @@ GameObject:
   - component: {fileID: 1278525203}
   - component: {fileID: 1278525202}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Primary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -788,19 +793,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrimaryButtonWatcher
   primaryButtonPress:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  secondaryButtonPress:
+    m_PersistentCalls:
+      m_Calls: []
+  gripPress:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerPress:
+    m_PersistentCalls:
+      m_Calls: []
+  joystickClick:
+    m_PersistentCalls:
+      m_Calls: []
+  joystickMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1278525203
 Transform:
   m_ObjectHideFlags: 0

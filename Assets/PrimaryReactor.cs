@@ -1,35 +1,57 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PrimaryReactor : MonoBehaviour
+public class ButtonReactor : MonoBehaviour
 {
-    public PrimaryButtonWatcher watcher;
-    public bool IsPressed = false; // used to display button state in the Unity Inspector window
+    [Header("Referencia al watcher de Quest 2")]
+    public Quest2InputWatcher watcher;
+
+    [Header("Selecciona qué botón escuchar")]
+    public bool listenPrimary;
+    public bool listenSecondary;
+    public bool listenGrip;
+    public bool listenTrigger;
+    public bool listenJoystickClick;
+
+    [FormerlySerializedAs("IsPressed")] [Header("Estado (debug en Inspector)")]
+    public bool isPressed;
+
+    [Header("Animación de rotación")]
     public Vector3 rotationAngle = new Vector3(45, 45, 45);
-    public float rotationDuration = 0.25f; // seconds
-    private Quaternion offRotation;
-    private Quaternion onRotation;
-    private Coroutine rotator;
+    public float rotationDuration = 0.25f; // segundos
+
+    private Quaternion _offRotation;
+    private Quaternion _onRotation;
+    private Coroutine _rotator;
 
     void Start()
     {
-        watcher.primaryButtonPress.AddListener(onPrimaryButtonEvent);
-        offRotation = this.transform.rotation;
-        onRotation = Quaternion.Euler(rotationAngle) * offRotation;
+        // Guardamos rotaciones base
+        _offRotation = this.transform.rotation;
+        _onRotation = Quaternion.Euler(rotationAngle) * _offRotation;
+
+        // Nos suscribimos solo a los eventos que quieras usar
+        if (listenPrimary) watcher.primaryButtonPress.AddListener(OnButtonEvent);
+        if (listenSecondary) watcher.secondaryButtonPress.AddListener(OnButtonEvent);
+        if (listenGrip) watcher.gripPress.AddListener(OnButtonEvent);
+        if (listenTrigger) watcher.triggerPress.AddListener(OnButtonEvent);
+        if (listenJoystickClick) watcher.joystickClick.AddListener(OnButtonEvent);
     }
 
-    public void onPrimaryButtonEvent(bool pressed)
+    public void OnButtonEvent(bool pressed)
     {
-        IsPressed = pressed;
-        if (rotator != null)
-            StopCoroutine(rotator);
+        isPressed = pressed;
+        if (_rotator != null)
+            StopCoroutine(_rotator);
+
         if (pressed)
-            rotator = StartCoroutine(AnimateRotation(this.transform.rotation, onRotation));
+            _rotator = StartCoroutine(ButtonAction(transform.rotation, _onRotation));
         else
-            rotator = StartCoroutine(AnimateRotation(this.transform.rotation, offRotation));
+            _rotator = StartCoroutine(ButtonAction(transform.rotation, _offRotation));
     }
 
-    private IEnumerator AnimateRotation(Quaternion fromRotation, Quaternion toRotation)
+    private IEnumerator ButtonAction(Quaternion fromRotation, Quaternion toRotation)
     {
         float t = 0;
         while (t < rotationDuration)
@@ -38,5 +60,6 @@ public class PrimaryReactor : MonoBehaviour
             t += Time.deltaTime;
             yield return null;
         }
+        transform.rotation = toRotation; // rotar
     }
 }

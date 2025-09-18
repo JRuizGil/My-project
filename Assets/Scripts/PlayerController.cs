@@ -11,12 +11,13 @@ public class VRPlayerController : MonoBehaviour
     public float acceleration = 5f;           // Qué tan rápido acelera
     public float deceleration = 4f;           // Qué tan rápido frena al soltar
 
+    public float rotationSpeed = 100f;
 
     private CharacterController characterController;
     private float fallingSpeed;
     private float currentBoostSpeed = 0f; // velocidad actual al usar trigger
     private Vector3 boostDirection = Vector3.zero; // última dirección usada
-
+    private Rigidbody rb;
     public Transform targetObject;        // Objeto cuya Z+ define la dirección
     
     public bool isAccelerating()
@@ -24,25 +25,29 @@ public class VRPlayerController : MonoBehaviour
         return true;
     }
 
-    private void Update()
+    private void Start()
     {
-        MovePlane();
-        //if (Input.GetAxis("Fire1"))
-        //{
-        //    AcceleratePlane();
-        //}
+        rb = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
     }
 
-    public void MovePlane()
+    private void Update()
     {
-        //if(Input.GetAxis("Horizontal"))
-        //{
-        //    
-        //}
-        //if(Input.GetAxis("Vertical"))
-        //{
-        //    
-        //}
+        RotatePlane();
+        if (Input.GetButton("Fire1")) // Fire1 devuelve bool (click/joystick button)
+        {
+            AcceleratePlane();
+        }
+    }
+
+    public void RotatePlane()
+    {
+        float horizontal = Input.GetAxis("Horizontal"); // joystick izquierda/derecha
+        float vertical = Input.GetAxis("Vertical");     // joystick arriba/abajo
+
+        // Rotamos el avión (pitch y yaw)
+        transform.Rotate(Vector3.forward * -horizontal * rotationSpeed * Time.deltaTime, Space.Self);     // yaw (izq-der)
+        transform.Rotate(Vector3.right * vertical * rotationSpeed * Time.deltaTime, Space.Self);   // pitch (arriba-abajo)
     }
     public void AcceleratePlane()
     {

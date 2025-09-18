@@ -87,12 +87,16 @@ namespace AztechGames
 
         void SlatController()
         {
-            // Increase slat angle when pressing B, decrease when pressing V
-            if (Input.GetKey(KeyCode.B))
+            float vertical = Input.GetAxis("Horizontal2");
+            float horizontal = Input.GetAxis("Vertical2");
+
+            // Si el joystick se empuja hacia arriba
+            if (vertical > 0f)
             {
                 SlatAmount += Time.deltaTime * surfaceSpeed;
             }
-            else if (Input.GetKey(KeyCode.V))
+            // Si el joystick se empuja hacia abajo (o izquierda, según lo que quieras)
+            else if (horizontal > 0f)
             {
                 SlatAmount -= Time.deltaTime * surfaceSpeed;
             }
@@ -103,7 +107,6 @@ namespace AztechGames
             slatsLeft.localPosition = Vector3.forward * _slatAmount;
             slatsRight.localPosition = Vector3.forward * _slatAmount;
         }
-
         public void PlaneRotations()
         {
             transform.Rotate(new Vector3(ElevatorAmount / surfaceSpeed, 0f, -AileronAmount) * Time.deltaTime);

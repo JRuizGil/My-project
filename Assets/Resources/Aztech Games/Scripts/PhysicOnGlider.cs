@@ -100,10 +100,11 @@ namespace AztechGames
             _rb.AddForce(liftVector);
         }
         
-        private void Update()
+        private void FixedUpdate()
         {
             _rb.AddForce(transform.forward * _gliderEngineController.Thrust, ForceMode.Acceleration);
             CalculateDradAndLift();
         }
+
     }
 }

@@ -759,6 +759,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3544532420071636962, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_text
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 4318581819838792397, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -778,6 +782,10 @@ PrefabInstance:
     - target: {fileID: 4318581819838792397, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328830826241512221, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_text
+      value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 4702080050569104077, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
       propertyPath: m_AnchorMax.x
@@ -891,6 +899,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8929897798271840610, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929897798271840610, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929897798271840610, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929897798271840610, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1186826542}
+    - target: {fileID: 8929897798271840610, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929897798271840610, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929897798271840610, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Changecamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929897798271840610, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FollowCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929897798271840610, guid: 6512fac4fb141e24b8d1c378882ab795, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -981,7 +1025,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005479610}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1005479614
 Camera:
   m_ObjectHideFlags: 0
@@ -1063,11 +1107,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PrimaryReactor
   watcher: {fileID: 1278525202}
-  listenPrimary: 0
+  listenPrimary: 1
   listenSecondary: 0
   listenGrip: 0
   listenTrigger: 1
-  listenJoystickClick: 0
+  listenJoystickClick: 1
   isPressed: 0
   rotationAngle: {x: 45, y: 45, z: 45}
   rotationDuration: 0.25
@@ -1228,6 +1272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowCamera
   target: {fileID: 677456759}
+  player: {fileID: 677456762}
   offset: {x: 0, y: 3, z: -20}
   smoothSpeed: 100
 --- !u!1 &1237853114
@@ -1317,7 +1362,7 @@ MonoBehaviour:
   triggerPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 677456762}
         m_TargetAssemblyTypeName: VRPlayerController, Assembly-CSharp
         m_MethodName: AcceleratePlane
         m_Mode: 1
@@ -1331,7 +1376,19 @@ MonoBehaviour:
         m_CallState: 2
   joystickClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 677456766}
+        m_TargetAssemblyTypeName: PhotoTakerSimplified, Assembly-CSharp
+        m_MethodName: TakePhotoAndCompare
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   joystickMove:
     m_PersistentCalls:
       m_Calls: []

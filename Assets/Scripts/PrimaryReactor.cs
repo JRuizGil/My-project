@@ -56,7 +56,7 @@ public class ButtonReactor : MonoBehaviour
         float t = 0;
         while (t < rotationDuration)
         {
-            transform.rotation = Quaternion.Lerp(fromRotation, toRotation, t / rotationDuration);
+            
             t += Time.deltaTime;
             yield return null;
         }

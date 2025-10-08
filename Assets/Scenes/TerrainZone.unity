@@ -265,8 +265,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 63.266335, y: 25.8195}
+  m_SizeDelta: {x: 739.6452, y: 101.639}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &238543226
 MonoBehaviour:
@@ -570,7 +570,7 @@ MonoBehaviour:
   weightPosition: 0.5
   weightRotation: 0.5
   maxDistanceAllowed: 50
-  maxAngleAllowed: 15
+  maxAngleAllowed: 50
   feedbackText: {fileID: 238543226}
 --- !u!1 &841776988
 GameObject:
@@ -1018,7 +1018,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1559,6 +1559,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5518899284880179293, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277802327414017196, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: m_Depth
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7412079985589468698, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}

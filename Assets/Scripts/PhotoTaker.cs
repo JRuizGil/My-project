@@ -4,16 +4,17 @@ using TMPro;
 
 public class PhotoTakerSimplified : MonoBehaviour
 {
-    // ASIGNAR EN EL INSPECTOR (¡Asegúrate de que no estén vacíos!)
+    
     [Header("Componentes Requeridos")]
-    public Transform cameraMountPoint; // Dónde está la cámara en el avión
-    public PhotoTarget currentTarget; // El objetivo a copiar
+    public Transform cameraMountPoint; // Posicion de camara en el avion
+    public PhotoTarget currentTarget; // Foto que hay que copiar
+    
 
     [Header("Configuración de Puntuación")]
     private const float MIN_SIMILARITY_THRESHOLD = 0.80f; // 80%
 
     [Header("Parámetros de Similitud (Pesos y Tolerancia)")]
-    // Distribución: 50% Posición, 50% Rotación (Simplificado)
+    //distribucion de puntuacion 50/50
     [Range(0, 1)] public float weightPosition = 0.50f; 
     [Range(0, 1)] public float weightRotation = 0.50f;
     
@@ -30,42 +31,35 @@ public class PhotoTakerSimplified : MonoBehaviour
     {
         public Vector3 position;
         public Quaternion rotation;
-        public float fieldOfView; // Mantenido para futura expansión
+        public float fieldOfView; 
     }
     
     void Update()
     {
-        // Prueba la función principal con la tecla ESPACIO
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakePhotoAndCompare();
         }
     }
 
-    // --- FUNCIÓN PRINCIPAL DE CAPTURA Y COMPARACIÓN ---
+    //captura y comparar
     public void TakePhotoAndCompare()
     {
-        if (cameraMountPoint == null || currentTarget == null)
-        {
-            // ¡Este mensaje de error es clave para detectar referencias faltantes!
-            if (feedbackText != null)
-                feedbackText.text = "ERROR: ¡Asigna PhotoCamera o PhotoTarget en el Inspector!";
-            Debug.LogError("Error: PhotoCamera Mount Point o Current Target no asignados.");
-            return;
-        }
+    
 
         // 1. CAPTURA DE DATOS GEOMÉTRICOS
         PhotoData playerShot = new PhotoData
         {
             position = cameraMountPoint.position,
             rotation = cameraMountPoint.rotation,
-            fieldOfView = currentTarget.fieldOfView // Asumimos que el FOV es el de la referencia para esta prueba
+            fieldOfView = currentTarget.fieldOfView 
         };
 
-        // 2. COMPARACIÓN
+        //comparar
         float similarityScore = ComparePhoto(playerShot, currentTarget);
         
-        // 3. RESULTADO Y FEEDBACK
+        // feedback
         string resultMessage = $"Similitud: {similarityScore:P2} (Pos: {CalculatePositionScore(playerShot, currentTarget):P0}%, Rot: {CalculateRotationScore(playerShot, currentTarget):P0}%) \n";
         
         if (similarityScore >= MIN_SIMILARITY_THRESHOLD)
@@ -83,17 +77,17 @@ public class PhotoTakerSimplified : MonoBehaviour
         Debug.Log(resultMessage);
     }
     
-    // --- FUNCIÓN DE CÁLCULO DE PUNTUACIÓN ---
+    // calcular puntuacion
     private float ComparePhoto(PhotoData playerShot, PhotoTarget target)
     {
         float positionScore = CalculatePositionScore(playerShot, target);
         float rotationScore = CalculateRotationScore(playerShot, target);
 
-        // Suma ponderada
+        // suma
         return (positionScore * weightPosition) + (rotationScore * weightRotation);
     }
 
-    // Calcula la puntuación de posición (0 a 1)
+    // puatuacion de posicion de 0 a 1
     private float CalculatePositionScore(PhotoData playerShot, PhotoTarget target)
     {
         float distance = Vector3.Distance(playerShot.position, target.position);
@@ -101,11 +95,11 @@ public class PhotoTakerSimplified : MonoBehaviour
         return 1f - Mathf.Clamp01(distance / maxDistanceAllowed);
     }
 
-    // Calcula la puntuación de rotación (0 a 1)
+    // puntacion de rotacion (0 a 1)
     private float CalculateRotationScore(PhotoData playerShot, PhotoTarget target)
     {
         float angleDifference = Quaternion.Angle(playerShot.rotation, target.rotation);
-        // Clamp01 asegura que el valor está entre 0 y 1. Si angleDifference > maxAngleAllowed, es 0.
+        
         return 1f - Mathf.Clamp01(angleDifference / maxAngleAllowed);
     }
 }

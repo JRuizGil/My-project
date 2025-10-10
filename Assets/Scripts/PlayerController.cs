@@ -5,74 +5,76 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class VRPlayerController : MonoBehaviour
 {
-    
     [Header("Boost con Trigger")]
-    public float maxBoostSpeed = 6f;          // Velocidad máxima con trigger
-    public float acceleration = 5f;           // Qué tan rápido acelera
-    public float deceleration = 4f;           // Qué tan rápido frena al soltar
+    public float maxBoostSpeed = 15f;
+    public float acceleration = 5f;
+    public float deceleration = 4f;
 
-    public float rotationSpeed = 100f;
+    [Header("Rotación del Avión")]
+    public float pitchSpeed = 60f;   // arriba / abajo
+    public float yawSpeed = 80f;     // girar izquierda / derecha
+    public float autoRollAmount = 35f; // inclinación máxima al girar
+    public float rollSmooth = 3f;      // velocidad con la que se ajusta el roll
 
     private CharacterController characterController;
-    private float fallingSpeed;
-    private float currentBoostSpeed = 0f; // velocidad actual al usar trigger
-    private Vector3 boostDirection = Vector3.zero; // última dirección usada
-    private Rigidbody rb;
-    public Transform targetObject;        // Objeto cuya Z+ define la dirección
-    
-    public bool isAccelerating()
-    {
-        return true;
-    }
+    private float currentBoostSpeed = 0f;
+    private Vector3 moveDirection = Vector3.zero;
+
+    [Header("Referencia de dirección")]
+    public Transform targetObject;  // define la dirección Z+
+
+    private float yaw;
+    private float pitch;
+    private float roll;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
-        RotatePlane();
-        if (Input.GetButton("Fire1")) // Fire1 devuelve bool (click/joystick button)
-        {
-            AcceleratePlane();
-        }
+        HandleRotation();
+        HandleBoost();
     }
 
-    public void RotatePlane()
+    private void HandleRotation()
     {
         float horizontal = Input.GetAxis("Horizontal"); // joystick izquierda/derecha
         float vertical = Input.GetAxis("Vertical");     // joystick arriba/abajo
 
-        // Rotamos el avión (pitch y yaw)
-        transform.Rotate(Vector3.forward * -horizontal * rotationSpeed * Time.deltaTime, Space.Self);     // yaw (izq-der)
-        transform.Rotate(Vector3.right * vertical * rotationSpeed * Time.deltaTime, Space.Self);   // pitch (arriba-abajo)
-    }
-    public void AcceleratePlane()
-    {
-        if (isAccelerating())
-        {
-            // Acelera progresivamente hasta el máximo
-            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, maxBoostSpeed, acceleration * Time.deltaTime);
+        // Yaw (giro izquierda/derecha)
+        yaw += horizontal * yawSpeed * Time.deltaTime;
 
-            // Dirección siempre hacia el eje Z local del objeto asignado
-            if (targetObject != null)
-            {
-                boostDirection = targetObject.forward;
-                boostDirection.Normalize();
-            }
+        // Pitch (subir/bajar)
+        pitch -= vertical * pitchSpeed * Time.deltaTime;
+
+        // Roll automático: inclinamos según el giro horizontal
+        float targetRoll = -horizontal * autoRollAmount;
+        roll = Mathf.Lerp(roll, targetRoll, Time.deltaTime * rollSmooth);
+
+        // Aplicamos la rotación combinada
+        Quaternion rotation = Quaternion.Euler(pitch, yaw, roll);
+        transform.rotation = rotation;
+    }
+
+    private void HandleBoost()
+    {
+        bool isBoosting = Input.GetButton("Fire1");
+
+        if (isBoosting)
+        {
+            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, maxBoostSpeed, acceleration * Time.deltaTime);
         }
         else
         {
-            // Si no está activo, desaceleramos progresivamente hasta 0
-            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, 0, deceleration * Time.deltaTime);
+            currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, 0f, deceleration * Time.deltaTime);
         }
-        // Aplicamos movimiento si hay velocidad
-        if (currentBoostSpeed > 0.01f)
-        {
-            characterController.Move(boostDirection * currentBoostSpeed * Time.deltaTime);
-        }
-    }
 
+        // Dirección de movimiento
+        Vector3 forwardDir = (targetObject != null) ? targetObject.forward : transform.forward;
+
+        moveDirection = forwardDir * currentBoostSpeed;
+        characterController.Move(moveDirection * Time.deltaTime);
+    }
 }

@@ -10,12 +10,6 @@ public class FollowCamera : MonoBehaviour
     public Vector3 offset = new Vector3(0, 5, -10); // relativo al avión
     public float smoothSpeed = 5f;
 
-    private void Start()
-    {
-        offset = new Vector3(0, -2.5f, -7.5f);
-        player.enabled = false;
-    }
-
     void LateUpdate()
     {
         if (target == null) return;
@@ -35,6 +29,5 @@ public class FollowCamera : MonoBehaviour
     {
         offset.z = -20f;
         offset.y = 5f;
-        player.enabled = true;
     }
 }

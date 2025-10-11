@@ -17,10 +17,6 @@ public class ButtonReactor : MonoBehaviour
     [FormerlySerializedAs("IsPressed")] [Header("Estado (debug en Inspector)")]
     public bool isPressed;
 
-    [Header("Animación de rotación")]
-    public Vector3 rotationAngle = new Vector3(45, 45, 45);
-    public float rotationDuration = 0.25f; // segundos
-
     private Quaternion _offRotation;
     private Quaternion _onRotation;
     private Coroutine _rotator;
@@ -29,7 +25,6 @@ public class ButtonReactor : MonoBehaviour
     {
         // Guardamos rotaciones base
         _offRotation = this.transform.rotation;
-        _onRotation = Quaternion.Euler(rotationAngle) * _offRotation;
 
         // Nos suscribimos solo a los eventos que quieras usar
         if (listenPrimary) watcher.primaryButtonPress.AddListener(OnButtonEvent);
@@ -41,25 +36,7 @@ public class ButtonReactor : MonoBehaviour
 
     public void OnButtonEvent(bool pressed)
     {
-        isPressed = pressed;
-        if (_rotator != null)
-            StopCoroutine(_rotator);
-
-        if (pressed)
-            _rotator = StartCoroutine(ButtonAction(transform.rotation, _onRotation));
-        else
-            _rotator = StartCoroutine(ButtonAction(transform.rotation, _offRotation));
+        
     }
 
-    private IEnumerator ButtonAction(Quaternion fromRotation, Quaternion toRotation)
-    {
-        float t = 0;
-        while (t < rotationDuration)
-        {
-            
-            t += Time.deltaTime;
-            yield return null;
-        }
-        transform.rotation = toRotation; // rotar
-    }
 }

@@ -4,7 +4,9 @@ using TMPro;
 
 public class PhotoTakerSimplified : MonoBehaviour
 {
-    
+    public FollowCamera followCamera;
+    public Timer timer;
+    public VRPlayerController VRPlayerController;
     [Header("Componentes Requeridos")]
     public Transform cameraMountPoint; // Posicion de camara en el avion
     public PhotoTarget currentTarget; // Foto que hay que copiar
@@ -75,6 +77,12 @@ public class PhotoTakerSimplified : MonoBehaviour
             feedbackText.text = resultMessage;
         
         Debug.Log(resultMessage);
+        timer.StopTimer();
+        VRPlayerController.ResetToStart();
+        VRPlayerController.enabled = false;
+        followCamera.ResetCamera();
+        
+
     }
     
     // calcular puntuacion

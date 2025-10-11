@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d27bd0c13d89244a4607a30ad3a1ea, type: 3}
   m_Name: PerfectPhoto
   m_EditorClassIdentifier: Assembly-CSharp::PhotoTarget
-  referenceImage: {fileID: 2800000, guid: dec6d82ca48128b49afb28551e5d87f3, type: 3}
+  referenceImage: {fileID: 2800000, guid: e0ce6d27798b42540b6e2ed3690995e4, type: 3}
   position: {x: 145.54, y: 57.5, z: 299.92}
   rotation: {x: 0.016137652, y: 0.1333804, z: 0.0021721453, w: -0.99093115}
   fieldOfView: 60

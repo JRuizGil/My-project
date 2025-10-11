@@ -27,9 +27,19 @@ public class VRPlayerController : MonoBehaviour
     private float pitch;
     private float roll;
 
+    // 📍 Posición y rotación inicial
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    private bool isboosting;
     private void Start()
     {
+        
+        isboosting = Input.GetButton("Fire1");
         characterController = GetComponent<CharacterController>();
+
+        // Guardar posición y rotación iniciales
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
     }
 
     private void Update()
@@ -58,11 +68,15 @@ public class VRPlayerController : MonoBehaviour
         transform.rotation = rotation;
     }
 
+    public void isBoosting()
+    {
+        isboosting = true;
+    }
     private void HandleBoost()
     {
-        bool isBoosting = Input.GetButton("Fire1");
+        
 
-        if (isBoosting)
+        if (isboosting)
         {
             currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, maxBoostSpeed, acceleration * Time.deltaTime);
         }
@@ -76,5 +90,23 @@ public class VRPlayerController : MonoBehaviour
 
         moveDirection = forwardDir * currentBoostSpeed;
         characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    // 🔁 Método público para reiniciar la posición y rotación
+    public void ResetToStart()
+    {
+        // Desactivar momentáneamente el CharacterController para mover sin problemas
+        characterController.enabled = false;
+
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
+
+        // Reiniciar variables de movimiento y rotación
+        currentBoostSpeed = 0f;
+        moveDirection = Vector3.zero;
+        yaw = pitch = roll = 0f;
+
+        // Volver a activar el CharacterController
+        characterController.enabled = true;
     }
 }

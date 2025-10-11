@@ -7,12 +7,15 @@ public class ControllerGyroReader : MonoBehaviour
 
     public XRNode controllerNode = XRNode.RightHand; // o LeftHand
     public Transform objetoARotar;
+    public float smoothSpeed = 8f; // Velocidad de suavizado (ajusta según lo que quieras)
 
     private InputDevice controller;
+    private Quaternion targetRotation; // Rotación que queremos alcanzar
 
     void Start()
     {
         controller = InputDevices.GetDeviceAtXRNode(controllerNode);
+        targetRotation = objetoARotar.rotation;
     }
 
     void Update()
@@ -24,19 +27,26 @@ public class ControllerGyroReader : MonoBehaviour
 
         if (controller.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rotation))
         {
-            objetoARotar.rotation = rotation;
+            // Guardamos la rotación del control como destino
+            targetRotation = rotation;
+
+            // Suavizamos el giro del objeto
+            objetoARotar.rotation = Quaternion.Slerp(
+                objetoARotar.rotation,
+                targetRotation,
+                Time.deltaTime * smoothSpeed
+            );
 
             // Convertir Quaternion a Euler (grados)
-            Vector3 euler = rotation.eulerAngles;
+            Vector3 euler = objetoARotar.rotation.eulerAngles;
 
-            // Contador de tiempo para mostrar cada segundo
+            // Mostrar cada segundo
             timer += Time.deltaTime;
             if (timer >= 1f)
             {
-                Debug.Log($"Rotación -> X: {euler.x:F1}°, Y: {euler.y:F1}°, Z: {euler.z:F1}°");
+                Debug.Log($"Rotación (suavizada) -> X: {euler.x:F1}°, Y: {euler.y:F1}°, Z: {euler.z:F1}°");
                 timer = 0f;
             }
         }
     }
-
 }

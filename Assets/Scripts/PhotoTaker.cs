@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI; // Necesario para el feedback visual
 using TMPro;
@@ -35,10 +36,8 @@ public class PhotoTakerSimplified : MonoBehaviour
         public Quaternion rotation;
         public float fieldOfView; 
     }
-    
     void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakePhotoAndCompare();
@@ -48,8 +47,6 @@ public class PhotoTakerSimplified : MonoBehaviour
     //captura y comparar
     public void TakePhotoAndCompare()
     {
-    
-
         // 1. CAPTURA DE DATOS GEOMÉTRICOS
         PhotoData playerShot = new PhotoData
         {
@@ -75,8 +72,8 @@ public class PhotoTakerSimplified : MonoBehaviour
         
         if (feedbackText != null)
             feedbackText.text = resultMessage;
-        
         Debug.Log(resultMessage);
+        
         timer.StopTimer();
         VRPlayerController.ResetToStart();
         VRPlayerController.enabled = false;

@@ -31,9 +31,10 @@ public class VRPlayerController : MonoBehaviour
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     private bool isboosting;
+    public ChangeCameraMode cameraMode;
     private void Start()
     {
-        
+        cameraMode = GetComponent<ChangeCameraMode>();
         isboosting = Input.GetButton("Fire1");
         characterController = GetComponent<CharacterController>();
 
@@ -95,7 +96,9 @@ public class VRPlayerController : MonoBehaviour
     // 🔁 Método público para reiniciar la posición y rotación
     public void ResetToStart()
     {
+        cameraMode.ChangeView();
         // Desactivar momentáneamente el CharacterController para mover sin problemas
+        
         characterController.enabled = false;
 
         transform.position = initialPosition;
@@ -108,5 +111,7 @@ public class VRPlayerController : MonoBehaviour
 
         // Volver a activar el CharacterController
         characterController.enabled = true;
+        
+        
     }
 }

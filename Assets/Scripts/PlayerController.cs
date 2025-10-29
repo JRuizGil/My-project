@@ -34,13 +34,18 @@ public class VRPlayerController : MonoBehaviour
     public ChangeCameraMode cameraMode;
     private void Start()
     {
-        cameraMode = GetComponent<ChangeCameraMode>();
+        characterController = GetComponent<CharacterController>();
         isboosting = Input.GetButton("Fire1");
         characterController = GetComponent<CharacterController>();
 
         // Guardar posición y rotación iniciales
         initialPosition = transform.position;
         initialRotation = transform.rotation;
+    }
+    private void Awake()
+    {
+        if (cameraMode == null)
+            cameraMode = GetComponent<ChangeCameraMode>(); // fallback automático
     }
 
     private void Update()

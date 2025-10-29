@@ -78,8 +78,6 @@ public class PhotoTakerSimplified : MonoBehaviour
         VRPlayerController.ResetToStart();
         VRPlayerController.enabled = false;
         followCamera.ResetCamera();
-        
-
     }
     
     // calcular puntuacion

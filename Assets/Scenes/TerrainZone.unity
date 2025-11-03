@@ -14,20 +14,20 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.6679245, g: 0.6679245, b: 0.6679245, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 1.4
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: ec46d2188d4b8774e847e75f1e12a8db, type: 2}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 0.541
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1891230074}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6726,6 +6726,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 780270278251679399, guid: 27024f5809f4a4347b9cd7f26a1bdf93, type: 3}
   m_PrefabInstance: {fileID: 6398330899575950906}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &879193564
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 610.0109
+      objectReference: {fileID: 0}
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 40.346497
+      objectReference: {fileID: 0}
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 337.2732
+      objectReference: {fileID: 0}
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405216939484306448, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5503166992987660084, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
+      propertyPath: m_Name
+      value: Spruce 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a6f21f9d15f76f244a354206c7dcaad2, type: 3}
 --- !u!1 &880920333
 GameObject:
   m_ObjectHideFlags: 0
@@ -35995,3 +36052,4 @@ SceneRoots:
   - {fileID: 1311308906}
   - {fileID: 4120033629671285579}
   - {fileID: 564792807}
+  - {fileID: 879193564}

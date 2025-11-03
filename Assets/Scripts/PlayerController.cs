@@ -13,8 +13,7 @@ public class VRPlayerController : MonoBehaviour
     [Header("Rotación del Avión")]
     public float pitchSpeed = 60f;   // arriba / abajo
     public float yawSpeed = 80f;     // girar izquierda / derecha
-    public float autoRollAmount = 35f; // inclinación máxima al girar
-    public float rollSmooth = 3f;      // velocidad con la que se ajusta el roll
+    // velocidad con la que se ajusta el roll
 
     private CharacterController characterController;
     private float currentBoostSpeed = 0f;
@@ -51,8 +50,13 @@ public class VRPlayerController : MonoBehaviour
     private void Update()
     {
         HandleRotation();
+
+        // Actualiza si está boosteando con el trigger
+        isboosting = Input.GetButton("Fire1");
+
         HandleBoost();
     }
+
 
     private void HandleRotation()
     {
@@ -66,8 +70,8 @@ public class VRPlayerController : MonoBehaviour
         pitch -= vertical * pitchSpeed * Time.deltaTime;
 
         // Roll automático: inclinamos según el giro horizontal
-        float targetRoll = -horizontal * autoRollAmount;
-        roll = Mathf.Lerp(roll, targetRoll, Time.deltaTime * rollSmooth);
+        //float targetRoll = -horizontal * autoRollAmount;
+        //roll = Mathf.Lerp(roll, targetRoll, Time.deltaTime * rollSmooth);
 
         // Aplicamos la rotación combinada
         Quaternion rotation = Quaternion.Euler(pitch, yaw, roll);
@@ -93,7 +97,6 @@ public class VRPlayerController : MonoBehaviour
 
         // Dirección de movimiento
         Vector3 forwardDir = (targetObject != null) ? targetObject.forward : transform.forward;
-
         moveDirection = forwardDir * currentBoostSpeed;
         characterController.Move(moveDirection * Time.deltaTime);
     }

@@ -1116,9 +1116,8 @@ MonoBehaviour:
   deceleration: 0.25
   pitchSpeed: 60
   yawSpeed: 80
-  autoRollAmount: 35
-  rollSmooth: 3
   targetObject: {fileID: 8764404102111601906}
+  cameraMode: {fileID: 0}
 --- !u!143 &677456763
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1156,6 +1155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb25a83efcd11d74c8f4e1e1979e724e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhotoTakerSimplified
+  targetManager: {fileID: 951883190}
   followCamera: {fileID: 1186826542}
   timer: {fileID: 677456769}
   VRPlayerController: {fileID: 677456762}
@@ -1202,6 +1202,9 @@ MonoBehaviour:
   FollowCamera: {fileID: 1186826542}
   player: {fileID: 677456762}
   timer: {fileID: 677456769}
+  isplaying: 0
+  FirstpersonCamera: {fileID: 0}
+  ThirdpersonCamera: {fileID: 0}
 --- !u!114 &677456769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,6 +1314,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 780270278251679399, guid: 27024f5809f4a4347b9cd7f26a1bdf93, type: 3}
   m_PrefabInstance: {fileID: 6398330899575950906}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &951883189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 951883191}
+  - component: {fileID: 951883190}
+  m_Layer: 0
+  m_Name: PhotoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &951883190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951883189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167c73a1c79cb614d8e7b08fc29245a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhotoTargetManager
+  availableTargets:
+  - {fileID: 11400000, guid: 6cfe0eed0c6af004f94aaa8fd4871613, type: 2}
+  - {fileID: 11400000, guid: 68d3cbe207067b4468ed1d383aeddd52, type: 2}
+  - {fileID: 11400000, guid: 3f39e35d1586ba046af1ef2e44cfb320, type: 2}
+  photoTaker: {fileID: 677456766}
+  currentTargetNameText: {fileID: 0}
+  referencePhotoDisplay: {fileID: 1605132021}
+  delayBeforeNextMission: 3
+--- !u!4 &951883191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951883189}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.11806361, y: 0.28586483, z: -0.035515133, w: 0.95030576}
+  m_LocalPosition: {x: 93.56949, y: 1, z: 312.03796}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 14.164, y: 33.484, z: 0}
 --- !u!1001 &964130682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23796,3 +23851,4 @@ SceneRoots:
   - {fileID: 4120033629671285579}
   - {fileID: 1026412475}
   - {fileID: 564792807}
+  - {fileID: 951883191}

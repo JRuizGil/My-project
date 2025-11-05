@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d27bd0c13d89244a4607a30ad3a1ea, type: 3}
+  m_Name: PerfectPhoto 2
+  m_EditorClassIdentifier: Assembly-CSharp::PhotoTarget
+  referenceImage: {fileID: 2800000, guid: 76c8f0c7f77550347bafa8b84358f613, type: 3}
+  position: {x: 203.8, y: 129.8, z: 173.4}
+  rotation: {x: 0.118063666, y: 0.28586486, z: -0.035515156, w: 0.9503057}
+  fieldOfView: 60

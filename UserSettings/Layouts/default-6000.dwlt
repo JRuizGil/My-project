@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 78
+    y: 24
     width: 238
     height: 393.5
   m_SerializedDataModeController:
@@ -417,8 +417,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 239
-    y: 78
+    x: 240
+    y: 24
     width: 809
     height: 393.5
   m_SerializedDataModeController:
@@ -941,11 +941,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.15379779, y: -0.24325061, z: 0.039007995, w: -0.9571668}
     speed: 2
-    m_Value: {x: -0.15519336, y: -0.24312922, z: 0.039363056, w: -0.95668894}
+    m_Value: {x: -0.15379779, y: -0.24325061, z: 0.039007995, w: -0.9571668}
   m_Size:
     m_Target: 33.385143
     speed: 2
-    m_Value: 31.947504
+    m_Value: 33.385143
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 497.5
+    y: 24
     width: 623
     height: 308.5
   m_SerializedDataModeController:
@@ -1045,7 +1045,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 51.5}
     m_SelectedIDs: bec40000
     m_LastClickedID: 50366
-    m_ExpandedIDs: 0000000040c40000a2d40000
+    m_ExpandedIDs: 00000000a4c40000a6c40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1074,7 +1074,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000040c40000
+    m_ExpandedIDs: 00000000a4c40000a6c40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1189,8 +1189,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 624
-    y: 497.5
+    x: 625
+    y: 24
     width: 424
     height: 308.5
   m_SerializedDataModeController:
@@ -1262,7 +1262,7 @@ MonoBehaviour:
       height: 650.9434
     m_MinimalGUI: 1
   m_defaultScale: 0.44166666
-  m_LastWindowPixelSize: {x: 848, y: 617}
+  m_LastWindowPixelSize: {x: 424, y: 308.5}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000001
@@ -1290,8 +1290,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1050
-    y: 78
+    x: 1051
+    y: 24
     width: 389
     height: 728
   m_SerializedDataModeController:

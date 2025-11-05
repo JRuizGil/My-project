@@ -74,7 +74,7 @@ public class PhotoTargetManager : MonoBehaviour
                 currentTargetNameText.text = $"Objetivo {currentTargetIndex + 1}/{availableTargets.Count}: {nextTarget.name}";
             
             if (photoTaker.feedbackText != null)
-                photoTaker.feedbackText.text = $"¡Comienza la Misión {currentTargetIndex + 1}! Encuentra {nextTarget.name}.";
+                photoTaker.feedbackText.text = $"¡Comienza la Misión {currentTargetIndex + 1}!{nextTarget.name} pulsa la tecla E para ver la foto nueva.";
         }
     }
 }

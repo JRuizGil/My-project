@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 478.4
+    y: 423.2
     width: 1119
     height: 291.59998
   m_SerializedDataModeController:
@@ -373,7 +373,7 @@ MonoBehaviour:
       height: 864
     m_MinimalGUI: 1
   m_defaultScale: 0.31319442
-  m_LastWindowPixelSize: {x: 1398.75, y: 364.49997}
+  m_LastWindowPixelSize: {x: 1119, y: 291.59998}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 00000000000000000000
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79.200005
+    y: 24
     width: 254.2
     height: 373.2
   m_SerializedDataModeController:
@@ -419,8 +419,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 84ad0000
-      m_LastClickedID: 44420
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: 14fbffff16ae000048ae0000fcae00002cb20000c2b20000ccb20000d0b2000096b30000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -467,8 +467,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 255.2
-    y: 79.200005
+    x: 256.2
+    y: 24
     width: 862.8
     height: 373.2
   m_SerializedDataModeController:
@@ -1095,7 +1095,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 146.00018}
     m_SelectedIDs: d4070100
     m_LastClickedID: 67540
-    m_ExpandedIDs: 0000000044c1000000ca9a3bffffff7f
+    m_ExpandedIDs: 000000004ac10000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1124,7 +1124,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000044c1000000ca9a3bffffff7f
+    m_ExpandedIDs: 000000004ac10000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1239,8 +1239,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1120
-    y: 79.200005
+    x: 1121
+    y: 24
     width: 415
     height: 690.8
   m_SerializedDataModeController:

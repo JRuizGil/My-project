@@ -1203,8 +1203,8 @@ MonoBehaviour:
   player: {fileID: 677456762}
   timer: {fileID: 677456769}
   isplaying: 0
-  FirstpersonCamera: {fileID: 7277802326597293280}
-  ThirdpersonCamera: {fileID: 1562059243}
+  FirstpersonCamera: {fileID: 1562059243}
+  ThirdpersonCamera: {fileID: 7277802326597293280}
 --- !u!114 &677456769
 MonoBehaviour:
   m_ObjectHideFlags: 0

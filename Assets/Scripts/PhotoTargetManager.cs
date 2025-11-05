@@ -11,8 +11,8 @@ public class PhotoTargetManager : MonoBehaviour
     [Header("Referencias")]
     public PhotoTakerSimplified photoTaker; 
     public TMP_Text currentTargetNameText;
-    // NUEVA REFERENCIA: El componente Image que muestra la foto
-    public Image referencePhotoDisplay; // ¡Asigna esto en el Inspector!
+    
+    public Image referencePhotoDisplay; 
     
     private int currentTargetIndex = -1;
     public float delayBeforeNextMission = 3.0f;
@@ -38,7 +38,7 @@ public class PhotoTargetManager : MonoBehaviour
             if (currentTargetNameText != null)
                 currentTargetNameText.text = "¡Juego Terminado! Misión Completa.";
             
-            // Opcional: Limpiar la imagen de referencia al terminar
+            
             if (referencePhotoDisplay != null) 
                 referencePhotoDisplay.sprite = null; 
             
@@ -46,7 +46,7 @@ public class PhotoTargetManager : MonoBehaviour
             yield break;
         }
 
-        // --- ASIGNACIÓN DEL NUEVO OBJETIVO ---
+       
         PhotoTarget nextTarget = availableTargets[currentTargetIndex];
         
         if (photoTaker != null)
@@ -65,16 +65,16 @@ public class PhotoTargetManager : MonoBehaviour
                 referencePhotoDisplay.enabled = true; // Asegurarse de que el Image esté visible
             }
             
-            // 2. Reiniciar el estado del jugador
+            
             photoTaker.VRPlayerController.enabled = true; 
             photoTaker.timer.StartTimer(); 
             
-            // 3. Dar feedback de texto
+            
             if (currentTargetNameText != null)
                 currentTargetNameText.text = $"Objetivo {currentTargetIndex + 1}/{availableTargets.Count}: {nextTarget.name}";
             
             if (photoTaker.feedbackText != null)
-                photoTaker.feedbackText.text = $"¡Comienza la Misión {currentTargetIndex + 1}!{nextTarget.name} pulsa la tecla E para ver la foto nueva.";
+                photoTaker.feedbackText.text = $"Pulsa la tecla E para ver la foto objetivo.";
         }
     }
 }

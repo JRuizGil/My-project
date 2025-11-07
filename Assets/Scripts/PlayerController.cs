@@ -29,7 +29,7 @@ public class VRPlayerController : MonoBehaviour
     // 📍 Posición y rotación inicial
     private Vector3 initialPosition;
     private Quaternion initialRotation;
-    private bool isboosting;
+    private bool isboosting = false;
     public ChangeCameraMode cameraMode;
     private void Start()
     {
@@ -50,11 +50,7 @@ public class VRPlayerController : MonoBehaviour
     private void Update()
     {
         HandleRotation();
-
-        // Actualiza si está boosteando con el trigger
-        isboosting = Input.GetButton("Fire1");
-
-        HandleBoost();
+        isBoosting();
     }
 
 
@@ -80,12 +76,18 @@ public class VRPlayerController : MonoBehaviour
 
     public void isBoosting()
     {
-        isboosting = true;
+        if(Input.GetKeyDown("Fire1"))
+        {
+            isboosting = true;
+            HandleBoost();
+        }
+        else
+        {
+            isboosting = false;
+        }
     }
     private void HandleBoost()
     {
-        
-
         if (isboosting)
         {
             currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, maxBoostSpeed, acceleration * Time.deltaTime);

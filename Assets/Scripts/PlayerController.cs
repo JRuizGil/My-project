@@ -48,28 +48,17 @@ public class VRPlayerController : MonoBehaviour
     void Update()
     {
         HandleInput();
-        HandleRotation();
         HandleBoost();
     }
 
-    void HandleInput()
+    public void HandleInput()
     {
         // Se activa mientras el botón está PRESIONADO, no solo el frame inicial
         isBoosting = Input.GetButton("Fire1");
     }
+    
 
-    void HandleRotation()
-    {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        yaw += horizontal * yawSpeed * Time.deltaTime;
-        pitch -= vertical * pitchSpeed * Time.deltaTime;
-
-        transform.rotation = Quaternion.Euler(pitch, yaw, roll);
-    }
-
-    void HandleBoost()
+    public void HandleBoost()
     {
         if (isBoosting)
             currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, maxBoostSpeed, acceleration * Time.deltaTime);
@@ -80,9 +69,11 @@ public class VRPlayerController : MonoBehaviour
         if (currentBoostSpeed <= 0.01f)
             return;
 
-        Vector3 forwardDir = (targetObject != null) ? targetObject.forward : transform.forward;
-        moveDirection = forwardDir * currentBoostSpeed;
+        Vector3 forwardDir = Camera.main.transform.forward;
+        forwardDir.y = 0f;
+        forwardDir.Normalize();
 
+        moveDirection = forwardDir * currentBoostSpeed;
         characterController.Move(moveDirection * Time.deltaTime);
     }
 

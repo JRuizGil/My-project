@@ -20,6 +20,11 @@ public class ControllerGyroReader : MonoBehaviour
 
     void FixedUpdate()
     {
+        HandleControllerGyro();
+    }
+
+    public void HandleControllerGyro()
+    {
         if (!controller.isValid)
         {
             controller = InputDevices.GetDeviceAtXRNode(controllerNode);

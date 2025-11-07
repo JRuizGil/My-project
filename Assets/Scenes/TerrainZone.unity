@@ -11117,7 +11117,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8298045290545122748}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04eccc4ec2102834bbe733289834d080, type: 3}
   m_Name: 
@@ -12146,7 +12146,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 677456762}
         m_TargetAssemblyTypeName: VRPlayerController, Assembly-CSharp
-        m_MethodName: isBoosting
+        m_MethodName: HandleInput
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19026,7 +19026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControllerGyroReader
   controllerNode: 5
-  objetoARotar: {fileID: 677456759}
+  objetoARotar: {fileID: 8764404102111601906}
   smoothSpeed: 8
 --- !u!1 &2129962390
 GameObject:

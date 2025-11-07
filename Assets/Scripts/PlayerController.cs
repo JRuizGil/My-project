@@ -69,10 +69,9 @@ public class VRPlayerController : MonoBehaviour
         if (currentBoostSpeed <= 0.01f)
             return;
 
-        Vector3 forwardDir = Camera.main.transform.forward;
+        Vector3 forwardDir = gameObject.transform.rotation * Vector3.forward;
         forwardDir.y = 0f;
         forwardDir.Normalize();
-
         moveDirection = forwardDir * currentBoostSpeed;
         characterController.Move(moveDirection * Time.deltaTime);
     }

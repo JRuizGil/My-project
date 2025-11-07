@@ -60,21 +60,22 @@ public class VRPlayerController : MonoBehaviour
 
     public void HandleBoost()
     {
+        // Acelerar o frenar
         if (isBoosting)
             currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, maxBoostSpeed, acceleration * Time.deltaTime);
         else
             currentBoostSpeed = Mathf.MoveTowards(currentBoostSpeed, 0f, deceleration * Time.deltaTime);
 
-        // Si no tiene velocidad, NO MOVER
+        // Si la velocidad es muy baja, no mover
         if (currentBoostSpeed <= 0.01f)
             return;
 
-        Vector3 forwardDir = gameObject.transform.forward;
-        forwardDir.y = 0f; // evitar inclinar arriba/abajo
+        // Avanzar según la rotación del PlayerController
+        Vector3 forwardDir = transform.forward;
+        forwardDir.y = 0f;
         forwardDir.Normalize();
 
-        moveDirection = forwardDir * currentBoostSpeed;
-        characterController.Move(moveDirection * Time.deltaTime);
+        characterController.Move(forwardDir * currentBoostSpeed * Time.deltaTime);
     }
 
 

@@ -47,7 +47,7 @@ public class VRPlayerController : MonoBehaviour
             cameraMode = GetComponent<ChangeCameraMode>(); // fallback automático
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         HandleRotation();
         isBoosting();

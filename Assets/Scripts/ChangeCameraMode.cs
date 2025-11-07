@@ -5,7 +5,6 @@ public class ChangeCameraMode : MonoBehaviour
 {
     public FollowCamera FollowCamera;
     public VRPlayerController player;
-    public Timer timer;
     public bool isplaying;
     public GameObject FirstpersonCamera;
     public GameObject ThirdpersonCamera;
@@ -13,7 +12,6 @@ public class ChangeCameraMode : MonoBehaviour
     private void Start()
     {
         player.enabled = false;
-        timer.RestartTimer();
     }
 
     public void PlayButton()
@@ -21,7 +19,6 @@ public class ChangeCameraMode : MonoBehaviour
         FollowCamera.enabled = true;
         FollowCamera.Changecamera();
         player.enabled = true; 
-        timer.StartTimer();
         isplaying = true;
     }
 

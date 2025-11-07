@@ -10,7 +10,6 @@ public class PhotoTakerSimplified : MonoBehaviour
     
     // Tus referencias existentes
     public FollowCamera followCamera;
-    public Timer timer;
     public VRPlayerController VRPlayerController;
     
     [Header("Componentes Requeridos")]
@@ -46,7 +45,6 @@ public class PhotoTakerSimplified : MonoBehaviour
     {
         // Asegúrate de que el juego empiece en el estado inicial correcto
         VRPlayerController.enabled = true; // El jugador puede moverse al inicio
-        timer.StartTimer(); // Inicia el temporizador
     }
 
     void Update()
@@ -115,7 +113,6 @@ public class PhotoTakerSimplified : MonoBehaviour
     private void ResetGameForNextMission()
     {
         // 1. Detener el timer (si es que no se detiene al inicio del Manager)
-        timer.StopTimer(); 
         
         // 2. Resetear la posición del jugador y desactivar controles (temporalmente)
         VRPlayerController.ResetToStart();

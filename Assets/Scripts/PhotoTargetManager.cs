@@ -67,7 +67,6 @@ public class PhotoTargetManager : MonoBehaviour
             
             
             photoTaker.VRPlayerController.enabled = true; 
-            photoTaker.timer.StartTimer(); 
             
             
             if (currentTargetNameText != null)

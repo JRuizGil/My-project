@@ -18,7 +18,7 @@ public class ControllerGyroReader : MonoBehaviour
         targetRotation = objetoARotar.rotation;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!controller.isValid)
         {

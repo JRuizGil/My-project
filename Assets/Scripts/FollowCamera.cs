@@ -7,7 +7,7 @@ public class FollowCamera : MonoBehaviour
 {
     public Transform target;
     public VRPlayerController player;
-    public Vector3 offset = new Vector3(0, 5, -10); // relativo al avión
+    public Vector3 offset;// relativo al avión
     public float smoothSpeed = 5f;
 
     // 📍 Posición y rotación inicial de la cámara

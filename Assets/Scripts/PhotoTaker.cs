@@ -119,7 +119,6 @@ public class PhotoTakerSimplified : MonoBehaviour
         VRPlayerController.enabled = false; // Deshabilitamos controles mientras se carga/muestra feedback
         
         // 3. Resetear la cámara
-        followCamera.ResetCamera();
         
         // 4. Iniciar Corutina o llamar al Manager para que decida cuándo volver a habilitar los controles
         // Aquí el Manager debería tomar el control.

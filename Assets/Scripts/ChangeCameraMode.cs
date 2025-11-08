@@ -17,7 +17,6 @@ public class ChangeCameraMode : MonoBehaviour
     public void PlayButton()
     {
         FollowCamera.enabled = true;
-        FollowCamera.Changecamera();
         player.enabled = true; 
         isplaying = true;
     }

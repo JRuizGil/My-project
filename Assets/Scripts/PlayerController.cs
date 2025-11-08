@@ -44,6 +44,7 @@ public class VRPlayerController : MonoBehaviour
     {
         initialPosition = transform.position;
         initialRotation = transform.rotation;
+        currentBoostSpeed = 0;
     }
 
     void Update()
@@ -82,14 +83,12 @@ public class VRPlayerController : MonoBehaviour
     public void ResetToStart()
     {
         //cameraMode.ChangeView();
-        currentBoostSpeed = 0f;
         moveDirection = Vector3.zero;
         yaw = pitch = roll = 0f;
-        
         transform.position = initialPosition;
         transform.rotation = initialRotation;
-
-        
+        currentBoostSpeed = 0f;
+        isBoosting = false;
         cameraFollow.ResetCamera();
     }
     

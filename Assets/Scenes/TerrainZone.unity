@@ -3419,8 +3419,8 @@ MonoBehaviour:
   currentTarget: {fileID: 11400000, guid: 6cfe0eed0c6af004f94aaa8fd4871613, type: 2}
   weightPosition: 0.5
   weightRotation: 0.5
-  maxDistanceAllowed: 300
-  maxAngleAllowed: 300
+  maxDistanceAllowed: 150
+  maxAngleAllowed: 150
   phototaken: 0
   feedbackText: {fileID: 747790902}
 --- !u!65 &677456767
@@ -4397,10 +4397,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrimaryReactor
   watcher: {fileID: 1278525202}
   listenPrimary: 1
-  listenSecondary: 0
+  listenSecondary: 1
   listenGrip: 0
   listenTrigger: 1
-  listenJoystickClick: 1
+  listenJoystickClick: 0
   isPressed: 0
 --- !u!4 &1007984628
 Transform:
@@ -5836,7 +5836,19 @@ MonoBehaviour:
       m_Calls: []
   secondaryButtonPress:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 677456766}
+        m_TargetAssemblyTypeName: PhotoTakerSimplified, Assembly-CSharp
+        m_MethodName: TakePhotoAndCompare
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   gripPress:
     m_PersistentCalls:
       m_Calls: []
@@ -5857,19 +5869,7 @@ MonoBehaviour:
         m_CallState: 2
   joystickClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 677456766}
-        m_TargetAssemblyTypeName: PhotoTakerSimplified, Assembly-CSharp
-        m_MethodName: TakePhotoAndCompare
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   joystickMove:
     m_PersistentCalls:
       m_Calls: []
@@ -6347,7 +6347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowCamera
   target: {fileID: 677456759}
-  offset: {x: 0, y: 2, z: -20}
+  offset: {x: 0, y: 5, z: -10}
   smoothSpeed: 10
   isFollowing: 0
 --- !u!4 &1473916260 stripped

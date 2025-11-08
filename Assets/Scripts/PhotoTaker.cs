@@ -1,18 +1,17 @@
 using UnityEngine;
-using UnityEngine.UI; // Usado para Image, aunque ya usas TMPro
+using UnityEngine.UI; // Usado para Image
 using TMPro;
 
 public class PhotoTakerSimplified : MonoBehaviour
 {
-    // AÑADE ESTA REFERENCIA PARA GESTIONAR EL CAMBIO DE FOTO
     [Header("Gestión de Misión")]
-    public PhotoTargetManager targetManager; // ¡Referencia al Manager de la lista de fotos!
+    public PhotoTargetManager targetManager; // Referencia al Manager
     
-    // Tus referencias existentes
+    [Header("Componentes del Avión")]
     public FollowCamera followCamera;
-    public VRPlayerController VRPlayerController;
+    public VRPlayerController VRPlayerController; // Tu script de control (probablemente el ArcadePlaneController ahora)
     
-    [Header("Componentes Requeridos")]
+    [Header("Componentes Requeridos de Foto")]
     public Transform cameraMountPoint; // Posicion de camara en el avion
     public PhotoTarget currentTarget; // Foto que hay que copiar
     
@@ -21,16 +20,17 @@ public class PhotoTakerSimplified : MonoBehaviour
     private const float MIN_SIMILARITY_THRESHOLD = 0.80f; // 80%
 
     [Header("Parámetros de Similitud (Pesos y Tolerancia)")]
-    // Distribución de puntuacion 50/50
     [Range(0, 1)] public float weightPosition = 0.50f; 
     [Range(0, 1)] public float weightRotation = 0.50f;
     
-    [Space] // Espacio visual en el Inspector
+    [Space]
     public float maxDistanceAllowed = 50f; // Tolerancia de distancia (metros)
-    public float maxAngleAllowed = 15f;
-    public bool phototaken;// Tolerancia de ángulo (grados)
+    public float maxAngleAllowed = 15f;    // Tolerancia de ángulo (grados)
+    
+    [Header("Estado Interno")]
+    public bool phototaken; // Bloqueador para evitar fotos múltiples
 
-    // REFERENCIA UI SIMPLE
+    [Header("UI")]
     public TMP_Text feedbackText;
 
     // Estructura de Datos (Igual que antes)
@@ -44,28 +44,44 @@ public class PhotoTakerSimplified : MonoBehaviour
 
     void Start()
     {
-        // Asegúrate de que el juego empiece en el estado inicial correcto
-        VRPlayerController.enabled = true; // El jugador puede moverse al inicio
-        followCamera = FindFirstObjectByType<FollowCamera>();
+        // (Nota: FindFirstObjectByType es lento, es mejor asignarlo en el Inspector)
+        if (followCamera == null) 
+            followCamera = FindFirstObjectByType<FollowCamera>();
     }
 
     void Update()
     {
-        // **Recordatorio: Cambia esto por la entrada VR (OVRInput o Input Action Unity Event)**
-        if (Input.GetKeyDown(KeyCode.Space) && !phototaken)
+        // Input de prueba con el teclado
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             TakePhotoAndCompare();
-            phototaken = true;
         }
     }
 
-    // captura y comparar
+    /// <summary>
+    /// Función principal. Llamada por el input de VR o el teclado.
+    /// </summary>
     public void TakePhotoAndCompare()
     {
+        // --- 1. FILTRO DE BLOQUEO ---
+        // Si ya hemos procesado una foto (phototaken == true),
+        // salimos de la función inmediatamente.
+        // Esto detendrá la 2ª, 3ª, 4ª, 5ª y 6ª llamada del mando de VR.
+        if (phototaken)
+        {
+            return; 
+        }
+
+        // --- 2. BLOQUEO INMEDIATO ---
+        // Si la función no se detuvo, es la primera llamada.
+        // La bloqueamos INMEDIATAMENTE.
+        phototaken = true;
+
         if (currentTarget == null || targetManager == null)
         {
              if (feedbackText != null) feedbackText.text = "ERROR: Misión no configurada.";
              Debug.LogError("PhotoTarget o PhotoTargetManager no asignado.");
+             phototaken = false; // Desbloquear si hay un error
              return;
         }
 
@@ -83,31 +99,30 @@ public class PhotoTakerSimplified : MonoBehaviour
         // 3. feedback
         string resultMessage = $"Similitud: {similarityScore:P2} (Pos: {CalculatePositionScore(playerShot, currentTarget):P0}%, Rot: {CalculateRotationScore(playerShot, currentTarget):P0}%) \n";
         
-        
         // --- GESTIÓN DEL ÉXITO O FRACASO ---
         if (similarityScore >= MIN_SIMILARITY_THRESHOLD)
         {
+            // ÉXITO
             resultMessage += "¡Éxito! Foto copiada al 80% o más. Reiniciando para el siguiente objetivo...";
-            
-            // Llamar al Manager para avanzar
-            targetManager.MissionCompleted(); // Usaremos este método en el Manager
-            
-            // Reiniciar los componentes para la siguiente ronda/misión
+            // 'phototaken' ya es true. Se queda bloqueado.
+            targetManager.MissionCompleted();
             ResetGameForNextMission();
-
         }
         else // Fallo
         {
+            // FALLO
             resultMessage += "¡Falló! Necesitas mejor posición y ángulo.";
-            // Simplemente reportar el fallo, pero no avanzar de misión.
-            // Los componentes se dejan como están (el jugador sigue volando)
+            
+            // --- 4. DESBLOQUEAR SI FALLA ---
+            // Si el jugador falla, desbloqueamos la cámara
+            // para que pueda intentarlo de nuevo.
+            phototaken = false;
         }
         
         if (feedbackText != null)
             feedbackText.text = resultMessage;
         
         Debug.Log(resultMessage);
-        
     }
 
     /// <summary>
@@ -115,18 +130,16 @@ public class PhotoTakerSimplified : MonoBehaviour
     /// </summary>
     private void ResetGameForNextMission()
     {
-        // 2. Resetear la posición del jugador y desactivar controles (temporalmente)
-        VRPlayerController.ResetToStart();
-        VRPlayerController.enabled = false; // Deshabilitamos controles mientras se carga/muestra feedback
-        
-        // 3. Resetear la cámara
-        
-        // 4. Iniciar Corutina o llamar al Manager para que decida cuándo volver a habilitar los controles
-        // Aquí el Manager debería tomar el control.
+        // Resetear la posición del jugador y desactivar controles (temporalmente)
+        if (VRPlayerController != null)
+        {
+            VRPlayerController.ResetToStart(); // Asumiendo que esta función existe en tu script
+            VRPlayerController.enabled = false; // Deshabilitamos controles mientras se carga/muestra feedback
+        }
     }
 
-
-    // El resto de las funciones de puntuación se mantienen iguales
+    // --- FUNCIONES DE CÁLCULO DE PUNTUACIÓN ---
+    
     private float ComparePhoto(PhotoData playerShot, PhotoTarget target)
     {
         float positionScore = CalculatePositionScore(playerShot, target);
@@ -144,5 +157,15 @@ public class PhotoTakerSimplified : MonoBehaviour
     {
         float angleDifference = Quaternion.Angle(playerShot.rotation, target.rotation);
         return 1f - Mathf.Clamp01(angleDifference / maxAngleAllowed);
+    }
+
+    // --- 5. FUNCIÓN DE DESBLOQUEO (La que te faltaba) ---
+    /// <summary>
+    /// Desbloquea la cámara para que el jugador pueda tomar una foto en la nueva misión.
+    /// Llamada por el PhotoTargetManager.
+    /// </summary>
+    public void ResetPhotoLock()
+    {
+        phototaken = false;
     }
 }

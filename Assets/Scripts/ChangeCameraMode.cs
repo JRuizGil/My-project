@@ -11,7 +11,7 @@ public class ChangeCameraMode : MonoBehaviour
 
     private void Start()
     {
-        player.enabled = false;
+        player.enabled = true;
     }
 
     public void PlayButton()

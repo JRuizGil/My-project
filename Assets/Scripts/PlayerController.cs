@@ -70,13 +70,12 @@ public class VRPlayerController : MonoBehaviour
         if (currentBoostSpeed <= 0.01f)
             return;
 
-        // Avanzar según la rotación del PlayerController
+        // Avanzar usando la dirección real del avión (incluye X, Y, Z)
         Vector3 forwardDir = transform.forward;
-        forwardDir.y = 0f;
-        forwardDir.Normalize();
 
         characterController.Move(forwardDir * currentBoostSpeed * Time.deltaTime);
     }
+
 
 
     public void ResetToStart()

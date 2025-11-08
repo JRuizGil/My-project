@@ -65,15 +65,9 @@ public class PhotoTargetManager : MonoBehaviour
                 referencePhotoDisplay.enabled = true; // Asegurarse de que el Image esté visible
             }
             
-            
-            photoTaker.VRPlayerController.enabled = true; 
-            
-            
             if (currentTargetNameText != null)
                 currentTargetNameText.text = $"Objetivo {currentTargetIndex + 1}/{availableTargets.Count}: {nextTarget.name}";
             
-            if (photoTaker.feedbackText != null)
-                photoTaker.feedbackText.text = $"Pulsa la tecla E para ver la foto objetivo.";
         }
     }
 }

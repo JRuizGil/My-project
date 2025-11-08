@@ -27,7 +27,8 @@ public class PhotoTakerSimplified : MonoBehaviour
     
     [Space] // Espacio visual en el Inspector
     public float maxDistanceAllowed = 50f; // Tolerancia de distancia (metros)
-    public float maxAngleAllowed = 15f;    // Tolerancia de ángulo (grados)
+    public float maxAngleAllowed = 15f;
+    public bool phototaken;// Tolerancia de ángulo (grados)
 
     // REFERENCIA UI SIMPLE
     public TMP_Text feedbackText;
@@ -45,14 +46,16 @@ public class PhotoTakerSimplified : MonoBehaviour
     {
         // Asegúrate de que el juego empiece en el estado inicial correcto
         VRPlayerController.enabled = true; // El jugador puede moverse al inicio
+        followCamera = FindFirstObjectByType<FollowCamera>();
     }
 
     void Update()
     {
         // **Recordatorio: Cambia esto por la entrada VR (OVRInput o Input Action Unity Event)**
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !phototaken)
         {
             TakePhotoAndCompare();
+            phototaken = true;
         }
     }
 
@@ -96,7 +99,6 @@ public class PhotoTakerSimplified : MonoBehaviour
         else // Fallo
         {
             resultMessage += "¡Falló! Necesitas mejor posición y ángulo.";
-            
             // Simplemente reportar el fallo, pero no avanzar de misión.
             // Los componentes se dejan como están (el jugador sigue volando)
         }
@@ -105,6 +107,7 @@ public class PhotoTakerSimplified : MonoBehaviour
             feedbackText.text = resultMessage;
         
         Debug.Log(resultMessage);
+        
     }
 
     /// <summary>
@@ -112,8 +115,6 @@ public class PhotoTakerSimplified : MonoBehaviour
     /// </summary>
     private void ResetGameForNextMission()
     {
-        // 1. Detener el timer (si es que no se detiene al inicio del Manager)
-        
         // 2. Resetear la posición del jugador y desactivar controles (temporalmente)
         VRPlayerController.ResetToStart();
         VRPlayerController.enabled = false; // Deshabilitamos controles mientras se carga/muestra feedback

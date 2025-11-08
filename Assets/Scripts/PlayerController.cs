@@ -28,13 +28,14 @@ public class VRPlayerController : MonoBehaviour
     // Estado inicial
     private Vector3 initialPosition;
     private Quaternion initialRotation;
+    public FollowCamera cameraFollow;
 
     public ChangeCameraMode cameraMode;
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
-
+        cameraFollow = FindFirstObjectByType<FollowCamera>();
         if (cameraMode == null)
             cameraMode = GetComponent<ChangeCameraMode>();
     }
@@ -80,17 +81,16 @@ public class VRPlayerController : MonoBehaviour
 
     public void ResetToStart()
     {
-        cameraMode.ChangeView();
-
-        characterController.enabled = false;
-
-        transform.position = initialPosition;
-        transform.rotation = initialRotation;
-
+        //cameraMode.ChangeView();
         currentBoostSpeed = 0f;
         moveDirection = Vector3.zero;
         yaw = pitch = roll = 0f;
+        
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
 
-        characterController.enabled = true;
+        
+        cameraFollow.ResetCamera();
     }
+    
 }

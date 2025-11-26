@@ -30,4 +30,9 @@ public class UImanager : MonoBehaviour
     {
         Debug.Log("Picture");
     }
+
+    public void creditsButton()
+    {
+        Debug.Log("Credits");
+    }
 }

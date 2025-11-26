@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="164d419b-d2ed-4d55-a016-b24d853511e7" name="Changes" comment="" />
+    <list default="true" id="164d419b-d2ed-4d55-a016-b24d853511e7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UImanager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UImanager.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,6 +104,7 @@
       <updated>1762555346462</updated>
       <workItem from="1762555348407" duration="4462000" />
       <workItem from="1762563678243" duration="5822000" />
+      <workItem from="1764190515748" duration="705000" />
     </task>
     <servers />
   </component>

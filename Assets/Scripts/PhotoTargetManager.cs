@@ -1,47 +1,47 @@
 using UnityEngine;
 using System.Collections.Generic;
-using TMPro; // Asegúrate de tener TMPro
-using UnityEngine.UI; // Asegúrate de tener UI para la Image
+using TMPro; 
+using UnityEngine.UI; 
 
 public class PhotoTargetManager : MonoBehaviour
 {
     [Header("Objetivos del Juego")]
-    public List<PhotoTarget> availableTargets; // Lista de todas las fotos a tomar
+    public List<PhotoTarget> availableTargets; 
     
     [Header("Referencias")]
-    public PhotoTakerSimplified photoTaker; // Tu script del avión
-    public TMP_Text currentTargetNameText; // Texto UI para el nombre del objetivo
-    public Image referencePhotoDisplay; // Image UI para mostrar la foto objetivo
+    public PhotoTakerSimplified photoTaker; 
+    public TMP_Text currentTargetNameText; 
+    public Image referencePhotoDisplay; 
     
-    // (Opcional) Añade la referencia a tu script de cámara si la tienes
-    // public ChangeCameraMode cameraModeChanger; 
+    [Header("Tutorial")]
+    public TutorialVisual tutorialVisuals; // Referencia al script del fantasma
 
-    private int currentTargetIndex = -1; // -1 indica que no se ha cargado el primero
-    public float delayBeforeNextMission = 3.0f; // Tiempo para que el jugador vea el feedback
+    private int currentTargetIndex = -1; 
+    public float delayBeforeNextMission = 3.0f; 
 
     void Start()
     {
         StartCoroutine(StartMissionSequence(0.5f)); 
     }
 
-    /// <summary>
-    /// Llamado por PhotoTakerSimplified cuando una foto tiene éxito.
-    /// </summary>
     public void MissionCompleted()
     {
         StartCoroutine(StartMissionSequence(delayBeforeNextMission));
     }
 
-    /// <summary>
-    /// Corutina para manejar el delay entre misiones y cargar el siguiente objetivo.
-    /// </summary>
     private System.Collections.IEnumerator StartMissionSequence(float delay)
     {
-        yield return new WaitForSeconds(delay); // Esperar el tiempo de feedback
+        // 1. LIMPIEZA DE TUTORIAL ANTERIOR
+        if (tutorialVisuals != null)
+        {
+            tutorialVisuals.HideTutorialVisuals();
+        }
+
+        yield return new WaitForSeconds(delay); 
 
         currentTargetIndex++;
 
-        // 1. Verificar si quedan objetivos (Fin del Juego)
+        // 2. Verificar Fin del Juego
         if (currentTargetIndex >= availableTargets.Count)
         {
             if (currentTargetNameText != null)
@@ -51,20 +51,20 @@ public class PhotoTargetManager : MonoBehaviour
                 photoTaker.feedbackText.text = "¡Has completado todas las misiones!";
 
             if (referencePhotoDisplay != null) 
-                referencePhotoDisplay.enabled = false; // Ocultar la foto
+                referencePhotoDisplay.enabled = false; 
             
             Debug.Log("Juego Terminado.");
-            yield break; // Detener la corutina
+            yield break; 
         }
 
-        // 2. Asignar el nuevo objetivo al PhotoTaker
+        // 3. Asignar el nuevo objetivo
         PhotoTarget nextTarget = availableTargets[currentTargetIndex];
         
         if (photoTaker != null)
         {
             photoTaker.currentTarget = nextTarget;
             
-            // 3. Actualizar la UI de la Foto Objetivo
+            // Actualizar UI Foto
             if (referencePhotoDisplay != null && nextTarget.referenceImage != null)
             {
                 referencePhotoDisplay.sprite = Sprite.Create(
@@ -75,24 +75,23 @@ public class PhotoTargetManager : MonoBehaviour
                 referencePhotoDisplay.enabled = true;
             }
             
-            // 4. (Opcional) Forzar la vista de cámara (si está asignado)
-            // if (cameraModeChanger != null)
-            // {
-            //     cameraModeChanger.SetThirdPersonView(); 
-            // }
+            // Reiniciar estado jugador
+            if (photoTaker.VRPlayerController != null) 
+                photoTaker.VRPlayerController.enabled = true; 
+            
+            // Desbloquear cámara
+            photoTaker.isMissionActive = true; 
 
-            // --- ESTAS SON LAS LÍNEAS QUE FALTAN ---
-            
-            // 5. Reiniciar el estado del jugador para el NUEVO objetivo
-            photoTaker.VRPlayerController.enabled = true; // ¡Habilitar controles!
-            // photoTaker.timer.StartTimer(); // Descomenta si tienes un timer
-            
-            // 6. ¡DESBLOQUEAR LA CÁMARA! (Paso Crítico)
-            photoTaker.ResetPhotoLock(); 
-            
-            // --- FIN DE LÍNEAS QUE FALTAN ---
+            // --- AQUÍ ESTÁ LA CORRECCIÓN ---
+            // Solo mostramos tutorial en la primera misión (índice 0)
+            if (currentTargetIndex == 0 && tutorialVisuals != null)
+            {
+                // ¡AHORA PASAMOS LOS 2 ARGUMENTOS!
+                tutorialVisuals.ShowTutorialVisuals(nextTarget, photoTaker.maxDistanceAllowed);
+            }
+            // -------------------------------
 
-            // 7. Dar feedback de texto al jugador
+            // Feedback texto
             if (currentTargetNameText != null)
                 currentTargetNameText.text = $"Objetivo {currentTargetIndex + 1}/{availableTargets.Count}: {nextTarget.name}";
             

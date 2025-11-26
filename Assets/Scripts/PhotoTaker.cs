@@ -15,7 +15,12 @@ public class PhotoTakerSimplified : MonoBehaviour
     public Transform cameraMountPoint; // Posicion de camara en el avion
     public PhotoTarget currentTarget; // Foto que hay que copiar
     
-
+    
+    
+    // --- ¡ESTA ES LA LÍNEA QUE TE FALTA! ---
+    [HideInInspector] 
+    public bool isMissionActive = false;
+    
     [Header("Configuración de Puntuación")]
     private const float MIN_SIMILARITY_THRESHOLD = 0.80f; // 80%
 

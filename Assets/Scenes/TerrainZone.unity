@@ -3417,6 +3417,7 @@ MonoBehaviour:
   VRPlayerController: {fileID: 677456762}
   cameraMountPoint: {fileID: 1473916260}
   currentTarget: {fileID: 11400000, guid: 6cfe0eed0c6af004f94aaa8fd4871613, type: 2}
+  isMissionActive: 0
   weightPosition: 0.5
   weightRotation: 0.5
   maxDistanceAllowed: 150
@@ -8242,6 +8243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1866420679}
   - component: {fileID: 1866420678}
+  - component: {fileID: 1866420680}
   m_Layer: 0
   m_Name: PhotoManager
   m_TagString: Untagged
@@ -8268,6 +8270,7 @@ MonoBehaviour:
   photoTaker: {fileID: 677456766}
   currentTargetNameText: {fileID: 0}
   referencePhotoDisplay: {fileID: 1940837419}
+  tutorialVisuals: {fileID: 1866420680}
   delayBeforeNextMission: 3
 --- !u!4 &1866420679
 Transform:
@@ -8285,6 +8288,20 @@ Transform:
   - {fileID: 61789210}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 14.164, y: 33.484, z: 0}
+--- !u!114 &1866420680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866420677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7a072358405394bbd452e670a735e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialVisual
+  ghostPlanePrefab: {fileID: 7800218766564711272, guid: fd92d2affacd3564f80cb83dd73b1958, type: 3}
+  zoneSpherePrefab: {fileID: 6446213903698486791, guid: 8d0ab9892a840514bb08f4f735f756dc, type: 3}
 --- !u!1 &1870516042
 GameObject:
   m_ObjectHideFlags: 0

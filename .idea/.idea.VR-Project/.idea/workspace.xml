@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="164d419b-d2ed-4d55-a016-b24d853511e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.VR-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VR-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TerrainZone.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainZone.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PhotoTaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PhotoTaker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PhotoTargetManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PhotoTargetManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
-    </list>
+    <list default="true" id="164d419b-d2ed-4d55-a016-b24d853511e7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1762555346462</updated>
       <workItem from="1762555348407" duration="4462000" />
-      <workItem from="1762563678243" duration="4960000" />
+      <workItem from="1762563678243" duration="5822000" />
     </task>
     <servers />
   </component>

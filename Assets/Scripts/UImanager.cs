@@ -20,4 +20,14 @@ public class UImanager : MonoBehaviour
         playerController.enabled = true;
         camera.isFollowing = true;
     }
+
+    public void ExitButton()
+    {
+        Debug.Log("Exit");
+    }
+
+    public void PictureButton()
+    {
+        Debug.Log("Picture");
+    }
 }

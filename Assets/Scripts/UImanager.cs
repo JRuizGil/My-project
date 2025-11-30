@@ -29,7 +29,13 @@ public class UImanager : MonoBehaviour
         if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
 
         phototaken.phototaken = false;
-        playerController.enabled = true;
+        
+        if (playerController != null)
+        {
+            playerController.enabled = true; // Nos aseguramos que el script corra
+            playerController.canControl = true; // Le damos permiso para volar
+        }
+        
         cameraScript.isFollowing = true;
     }
 

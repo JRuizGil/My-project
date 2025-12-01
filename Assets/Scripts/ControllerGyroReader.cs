@@ -1,23 +1,24 @@
 using UnityEngine;
 using UnityEngine.XR;
+
 public class ControllerGyroReader : MonoBehaviour
 {
-    public bool allowGyro = false;   // <-- ACTIVADO POR EL REACTOR
+    public bool allowGyro = false;   // Activado por ButtonReactor
 
     private float timer = 0f;
     VRPlayerController playercontroller;
-    public XRNode controllerNode = XRNode.RightHand; 
+    public XRNode controllerNode = XRNode.RightHand;
     public Transform objetoARotar;
     public float smoothSpeed = 8f;
 
     private InputDevice controller;
-    private Quaternion targetRotation; 
+    private Quaternion targetRotation;
     public Vector3 controllerForwardCorrection = new Vector3(0, 0, 0);
     private Quaternion correction;
 
     void Start()
     {
-        playercontroller = FindFirstObjectByType<VRPlayerController>();
+        playercontroller = FindObjectOfType<VRPlayerController>();
         controller = InputDevices.GetDeviceAtXRNode(controllerNode);
         correction = Quaternion.Euler(controllerForwardCorrection);
         targetRotation = objetoARotar.rotation;
@@ -25,7 +26,7 @@ public class ControllerGyroReader : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (allowGyro)        // <----- SOLO FUNCIONA SI ES TRUE
+        if (allowGyro)
             HandleControllerGyro();
     }
 
@@ -47,6 +48,10 @@ public class ControllerGyroReader : MonoBehaviour
             );
         }
     }
+
+    // ---------------------------------------------------------
+    // ⭐ MÉTODO PÚBLICO PARA EL REACTOR
+    // ---------------------------------------------------------
     public void SetGyro(bool pressed)
     {
         allowGyro = pressed;

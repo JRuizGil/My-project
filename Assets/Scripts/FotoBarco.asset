@@ -16,3 +16,5 @@ MonoBehaviour:
   position: {x: 301.1078, y: 21.43695, z: 228.0558}
   rotation: {x: 0.03862196, y: 0.3920152, z: -0.016474858, w: 0.91899997}
   fieldOfView: 60
+  missionName: Barco
+  photoStory: "Aun as\xED, los barcos segu\xEDan llegando sin perderse.\r\n"

@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="164d419b-d2ed-4d55-a016-b24d853511e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.VR-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VR-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TerrainZone.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainZone.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerGyroReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerGyroReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest2InputWatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest2InputWatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRBoostInputCombiner.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VRBoostInputCombiner.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -28,6 +29,7 @@ public class VRPlayerController : MonoBehaviour
     private Quaternion initialRotation;
     public FollowCamera cameraFollow;
     public ChangeCameraMode cameraMode;
+    public GameObject HudGameOver;
 
     void Awake()
     {
@@ -73,9 +75,17 @@ public class VRPlayerController : MonoBehaviour
         canControl = false; // <--- Bloqueamos el control al reiniciar
         cameraFollow.ResetCamera();
     }
-    public void SetBoost(bool state)
+    public void ToggleBoost()
     {
-        isBoosting = state;
+        isBoosting = !isBoosting;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("terrain"))
+        {
+            ResetToStart();
+            HudGameOver.SetActive(true);
+        }
+    }
 }

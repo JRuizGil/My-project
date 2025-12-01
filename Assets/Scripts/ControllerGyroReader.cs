@@ -1,21 +1,23 @@
 using UnityEngine;
 using UnityEngine.XR;
-
 public class ControllerGyroReader : MonoBehaviour
 {
-    private float timer = 0f;
+    public bool allowGyro = false;   // <-- ACTIVADO POR EL REACTOR
 
-    public XRNode controllerNode = XRNode.RightHand; // o LeftHand
+    private float timer = 0f;
+    VRPlayerController playercontroller;
+    public XRNode controllerNode = XRNode.RightHand; 
     public Transform objetoARotar;
-    public float smoothSpeed = 8f; // Velocidad de suavizado (ajusta según lo que quieras)
+    public float smoothSpeed = 8f;
 
     private InputDevice controller;
-    private Quaternion targetRotation; // Rotación que queremos alcanzar
-    public Vector3 controllerForwardCorrection = new Vector3(0, 0, 0); // Ajustaremos aquí
+    private Quaternion targetRotation; 
+    public Vector3 controllerForwardCorrection = new Vector3(0, 0, 0);
     private Quaternion correction;
 
     void Start()
     {
+        playercontroller = FindFirstObjectByType<VRPlayerController>();
         controller = InputDevices.GetDeviceAtXRNode(controllerNode);
         correction = Quaternion.Euler(controllerForwardCorrection);
         targetRotation = objetoARotar.rotation;
@@ -23,7 +25,8 @@ public class ControllerGyroReader : MonoBehaviour
 
     void FixedUpdate()
     {
-        HandleControllerGyro();
+        if (allowGyro)        // <----- SOLO FUNCIONA SI ES TRUE
+            HandleControllerGyro();
     }
 
     public void HandleControllerGyro()

@@ -5955,6 +5955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8989bd7da499e4d9c9d16923960d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControllerGyroReader
+  allowGyro: 0
   controllerNode: 5
   objetoARotar: {fileID: 677456759}
   smoothSpeed: 8
@@ -10307,6 +10308,7 @@ MonoBehaviour:
   pitchSpeed: 60
   yawSpeed: 80
   targetObject: {fileID: 677456759}
+  isBoosting: 0
   cameraFollow: {fileID: 1473916259}
   cameraMode: {fileID: 677456768}
 --- !u!143 &677456763
@@ -13156,9 +13158,12 @@ MonoBehaviour:
   watcher: {fileID: 1278525202}
   listenPrimary: 1
   listenSecondary: 1
-  listenGrip: 0
+  listenGrip: 1
   listenTrigger: 1
   listenJoystickClick: 0
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
   isPressed: 0
 --- !u!4 &1007984628
 Transform:
@@ -16024,25 +16029,10 @@ MonoBehaviour:
   gripPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  triggerPress:
-    m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 677456762}
         m_TargetAssemblyTypeName: VRPlayerController, Assembly-CSharp
-        m_MethodName: HandleBoost
-        m_Mode: 1
+        m_MethodName: SetBoost
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16050,7 +16040,22 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
+  triggerPress:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 677456762}
+        m_TargetAssemblyTypeName: VRPlayerController, Assembly-CSharp
+        m_MethodName: SetBoost
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   joystickClick:
     m_PersistentCalls:
       m_Calls: []

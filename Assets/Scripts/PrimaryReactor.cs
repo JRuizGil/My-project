@@ -25,7 +25,6 @@ public class ButtonReactor : MonoBehaviour
         if (listenTrigger) watcher.triggerPress.AddListener(OnButtonEvent);
         if (listenJoystickClick) watcher.joystickClick.AddListener(OnButtonEvent);
     }
-
     public void OnButtonEvent(bool pressed)
     {
         isPressed = pressed;

@@ -12,6 +12,10 @@ public class UImanager : MonoBehaviour
     private VRPlayerController playerController;
     private FollowCamera cameraScript; // Cambié 'camera' a 'cameraScript' para evitar conflictos con nombres reservados
     private PhotoTakerSimplified phototaken;
+    
+    [Header("Control de Aviones")]
+    public GameObject realPlayerPlane;  // El avión que debe volar (lo activaremos)
+    public GameObject fakeMenuPlane;
 
     private void Awake()
     {
@@ -19,6 +23,17 @@ public class UImanager : MonoBehaviour
         cameraScript = FindFirstObjectByType<FollowCamera>();
         phototaken = FindFirstObjectByType<PhotoTakerSimplified>();
         
+        if (realPlayerPlane != null)
+        {
+            realPlayerPlane.SetActive(false);
+        }
+    
+        // 2. Aseguramos que el avión FALSO esté ENCENDIDO (para el menú).
+        if (fakeMenuPlane != null)
+        {
+            fakeMenuPlane.SetActive(true);
+        }
+
         // Opcional: Asegurarnos de empezar con el menú abierto y los otros cerrados
         if(mainMenuPanel != null) OpenPanel(mainMenuPanel);
     }
@@ -26,7 +41,7 @@ public class UImanager : MonoBehaviour
     public void PlayButton()
     {
         // Ocultamos el menú principal al jugar
-        if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
+        //if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
 
         phototaken.phototaken = false;
         
@@ -37,6 +52,17 @@ public class UImanager : MonoBehaviour
         }
         
         cameraScript.isFollowing = true;
+        
+        if (fakeMenuPlane != null)
+        {
+            fakeMenuPlane.SetActive(false);
+        }
+
+        // Activamos el avión jugable.
+        if (realPlayerPlane != null)
+        {
+            realPlayerPlane.SetActive(true);
+        }
     }
 
     public void ExitButton()

@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="164d419b-d2ed-4d55-a016-b24d853511e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.VR-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VR-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TerrainZone.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TerrainZone.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChangeCameraMode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ChangeCameraMode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PhotoTaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PhotoTaker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UImanager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UImanager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,6 +111,7 @@
       <workItem from="1762563678243" duration="5822000" />
       <workItem from="1764190515748" duration="705000" />
       <workItem from="1764521831504" duration="2571000" />
+      <workItem from="1764604186563" duration="3117000" />
     </task>
     <servers />
   </component>

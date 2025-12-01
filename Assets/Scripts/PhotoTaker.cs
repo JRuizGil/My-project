@@ -15,7 +15,9 @@ public class PhotoTakerSimplified : MonoBehaviour
     public Transform cameraMountPoint; // Posicion de camara en el avion
     public PhotoTarget currentTarget; // Foto que hay que copiar
     
-    
+    [Header("Referencias de Aviones para Reseteo")] // <-- ¡NUEVAS REFERENCIAS!
+    public GameObject realPlayerPlane;
+    public GameObject fakeMenuPlane;
     
     // --- ¡ESTA ES LA LÍNEA QUE TE FALTA! ---
     [HideInInspector] 
@@ -111,6 +113,7 @@ public class PhotoTakerSimplified : MonoBehaviour
             resultMessage += "¡Éxito! Foto copiada al 80% o más. Reiniciando para el siguiente objetivo...";
             // 'phototaken' ya es true. Se queda bloqueado.
             targetManager.MissionCompleted();
+            
             ResetGameForNextMission();
         }
         else // Fallo
@@ -140,6 +143,15 @@ public class PhotoTakerSimplified : MonoBehaviour
         {
             VRPlayerController.ResetToStart(); // Asumiendo que esta función existe en tu script
             VRPlayerController.enabled = false; // Deshabilitamos controles mientras se carga/muestra feedback
+        }
+        
+        if (realPlayerPlane != null)
+        {
+            realPlayerPlane.SetActive(false); // Apagamos el avión que estaba volando
+        }
+        if (fakeMenuPlane != null)
+        {
+            fakeMenuPlane.SetActive(true); // Encendemos el avión estático del menú
         }
     }
 

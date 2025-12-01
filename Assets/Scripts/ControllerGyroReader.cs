@@ -47,4 +47,8 @@ public class ControllerGyroReader : MonoBehaviour
             );
         }
     }
+    public void SetGyro(bool pressed)
+    {
+        allowGyro = pressed;
+    }
 }

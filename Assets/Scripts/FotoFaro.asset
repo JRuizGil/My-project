@@ -16,3 +16,5 @@ MonoBehaviour:
   position: {x: 267.4102, y: 54.032032, z: 724.97644}
   rotation: {x: 0.018509898, y: 0.7068644, z: 0.00617059, w: 0.7070798}
   fieldOfView: 60
+  missionName: Faro
+  photoStory: "En la isla de los vientos, el faro llevaba d\xE9cadas apagado.\r\n"

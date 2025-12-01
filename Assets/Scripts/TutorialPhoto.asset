@@ -16,3 +16,6 @@ MonoBehaviour:
   position: {x: 761.8259, y: 210.9831, z: 497.5891}
   rotation: {x: 0.06604753, y: 0.008419395, z: 0.0037775692, w: 0.9977737}
   fieldOfView: 60
+  missionName: Tutorial
+  photoStory: "\xA1Bienvenido a este juego! Lega a la cima de la monta\xF1a para
+    completar el tutorial.  Deberas copiar la estela azul del avion fantasma."

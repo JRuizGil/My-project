@@ -7,7 +7,11 @@ public class PhotoTargetManager : MonoBehaviour
 {
     [Header("Objetivos del Juego")]
     public List<PhotoTarget> availableTargets; 
-    
+   
+    [Header("Panel de Historia VR")]
+     
+    public TMP_Text storyBodyText;  
+   
     [Header("Referencias")]
     public PhotoTakerSimplified photoTaker; 
     public TMP_Text currentTargetNameText; 
@@ -74,6 +78,11 @@ public class PhotoTargetManager : MonoBehaviour
                 );
                 referencePhotoDisplay.enabled = true;
             }
+            
+         
+            
+            if (storyBodyText != null) 
+                storyBodyText.text = nextTarget.photoStory;
             
             // Reiniciar estado jugador
             if (photoTaker.VRPlayerController != null) 

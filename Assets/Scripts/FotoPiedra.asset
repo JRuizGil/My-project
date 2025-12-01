@@ -16,3 +16,8 @@ MonoBehaviour:
   position: {x: 615.7101, y: 120.6427, z: 745.1217}
   rotation: {x: 0.000034555716, y: 0.99996257, z: 0.007199532, w: -0.0047995374}
   fieldOfView: 60
+  missionName: Piedra
+  photoStory: 'Al final descubrieron que una roca en la cima brillaba lo suficiente
+    para guiar a los barcos.
+
+'

@@ -21,7 +21,7 @@ public class VRPlayerController : MonoBehaviour
     private CharacterController characterController;
     private float currentBoostSpeed = 0f;
     
-    private bool isBoosting = false;
+    public bool isBoosting = false;
 
     // Estado inicial
     private Vector3 initialPosition;

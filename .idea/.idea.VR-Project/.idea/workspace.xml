@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="164d419b-d2ed-4d55-a016-b24d853511e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.VR-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VR-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerGyroReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerGyroReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest2InputWatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest2InputWatcher.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +109,7 @@
       <workItem from="1764190515748" duration="705000" />
       <workItem from="1764521831504" duration="2571000" />
       <workItem from="1764604186563" duration="3117000" />
+      <workItem from="1764613929791" duration="1157000" />
     </task>
     <servers />
   </component>

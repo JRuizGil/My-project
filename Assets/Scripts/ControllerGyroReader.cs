@@ -48,10 +48,6 @@ public class ControllerGyroReader : MonoBehaviour
             );
         }
     }
-
-    // ---------------------------------------------------------
-    // ⭐ MÉTODO PÚBLICO PARA EL REACTOR
-    // ---------------------------------------------------------
     public void SetGyro(bool pressed)
     {
         allowGyro = pressed;

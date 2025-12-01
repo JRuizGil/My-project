@@ -10183,6 +10183,7 @@ GameObject:
   - component: {fileID: 677456766}
   - component: {fileID: 677456767}
   - component: {fileID: 677456768}
+  - component: {fileID: 677456769}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -10400,6 +10401,19 @@ MonoBehaviour:
   isplaying: 0
   FirstpersonCamera: {fileID: 2129962390}
   ThirdpersonCamera: {fileID: 1473916258}
+--- !u!114 &677456769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677456755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3184a5f8891d44a8aeeb0693f21f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  player: {fileID: 677456762}
 --- !u!1 &702502263
 GameObject:
   m_ObjectHideFlags: 0
@@ -16029,9 +16043,9 @@ MonoBehaviour:
   gripPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 677456762}
-        m_TargetAssemblyTypeName: VRPlayerController, Assembly-CSharp
-        m_MethodName: SetBoost
+      - m_Target: {fileID: 677456769}
+        m_TargetAssemblyTypeName: VRBoostInputCombiner, Assembly-CSharp
+        m_MethodName: SetGrip
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16039,14 +16053,14 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 1
   triggerPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 677456762}
-        m_TargetAssemblyTypeName: VRPlayerController, Assembly-CSharp
-        m_MethodName: SetBoost
+      - m_Target: {fileID: 677456769}
+        m_TargetAssemblyTypeName: VRBoostInputCombiner, Assembly-CSharp
+        m_MethodName: SetTrigger
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16054,7 +16068,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 1
   joystickClick:
     m_PersistentCalls:

@@ -14,7 +14,7 @@ public class Quest2InputWatcher : MonoBehaviour
     public ButtonEvent gripPress;
     public ButtonEvent triggerPress;
     public ButtonEvent joystickClick;
-
+    private float triggerThreshold = 0.6f;
     // Eventos para ejes
     public AxisEvent joystickMove;
 
@@ -58,16 +58,29 @@ public class Quest2InputWatcher : MonoBehaviour
             devices.Remove(device);
     }
 
+  
+
     private void Update()
     {
         foreach (var device in devices)
         {
-            // Botones
+            // Botones normales
             CheckButton(device, CommonUsages.primaryButton, ref lastPrimary, primaryButtonPress);
             CheckButton(device, CommonUsages.secondaryButton, ref lastSecondary, secondaryButtonPress);
             CheckButton(device, CommonUsages.gripButton, ref lastGrip, gripPress);
-            CheckButton(device, CommonUsages.triggerButton, ref lastTrigger, triggerPress);
             CheckButton(device, CommonUsages.primary2DAxisClick, ref lastJoyClick, joystickClick);
+
+            // --- TRIGGER ANALÓGICO ---
+            if (device.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
+            {
+                bool pressed = triggerValue > triggerThreshold;
+
+                if (pressed != lastTrigger)
+                {
+                    triggerPress.Invoke(pressed);
+                    lastTrigger = pressed;
+                }
+            }
 
             // Joystick
             if (device.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 joy))

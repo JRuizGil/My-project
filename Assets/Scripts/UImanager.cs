@@ -107,3 +107,6 @@ public class UImanager : MonoBehaviour
         if (panelToOpen != null) panelToOpen.SetActive(true);
     }
 }
+
+
+ 

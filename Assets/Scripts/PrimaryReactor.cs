@@ -1,10 +1,8 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.Events;
 
 public class ButtonReactor : MonoBehaviour
 {
-    [Header("Referencia al watcher de Quest 2")]
     public Quest2InputWatcher watcher;
 
     [Header("Selecciona qué botón escuchar")]
@@ -14,19 +12,13 @@ public class ButtonReactor : MonoBehaviour
     public bool listenTrigger;
     public bool listenJoystickClick;
 
-    [FormerlySerializedAs("IsPressed")] [Header("Estado (debug en Inspector)")]
-    public bool isPressed;
+    [Header("Evento externo (ej: activar boost)")]
+    public UnityEvent<bool> OnValueChanged;
 
-    private Quaternion _offRotation;
-    private Quaternion _onRotation;
-    private Coroutine _rotator;
+    public bool isPressed;
 
     void Start()
     {
-        // Guardamos rotaciones base
-        _offRotation = this.transform.rotation;
-
-        // Nos suscribimos solo a los eventos que quieras usar
         if (listenPrimary) watcher.primaryButtonPress.AddListener(OnButtonEvent);
         if (listenSecondary) watcher.secondaryButtonPress.AddListener(OnButtonEvent);
         if (listenGrip) watcher.gripPress.AddListener(OnButtonEvent);
@@ -36,7 +28,7 @@ public class ButtonReactor : MonoBehaviour
 
     public void OnButtonEvent(bool pressed)
     {
-        
+        isPressed = pressed;
+        OnValueChanged?.Invoke(pressed); // <--- llama a quien necesite saberlo
     }
-
 }

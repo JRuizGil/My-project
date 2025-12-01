@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.XR; // <--- 1. IMPORTANTE: Necesario para leer los mandos de VR
 
 [RequireComponent(typeof(CharacterController))]
 public class VRPlayerController : MonoBehaviour
@@ -22,9 +21,6 @@ public class VRPlayerController : MonoBehaviour
     private CharacterController characterController;
     private float currentBoostSpeed = 0f;
     
-    // Eliminé 'moveDirection' ya que no lo estabas usando en el movimiento final, 
-    // usas transform.forward directamente.
-
     private bool isBoosting = false;
 
     // Estado inicial
@@ -40,7 +36,6 @@ public class VRPlayerController : MonoBehaviour
         if (cameraMode == null)
             cameraMode = GetComponent<ChangeCameraMode>();
     }
-
     void Start()
     {
         initialPosition = transform.position;
@@ -48,27 +43,11 @@ public class VRPlayerController : MonoBehaviour
         currentBoostSpeed = 0;
         canControl = false; // Nos aseguramos de empezar bloqueados
     }
-
     void Update()
     {
-        // 3. SI NO ESTAMOS JUGANDO, NO HACEMOS NADA
         if (!canControl) return; 
-
-        HandleInput();
         HandleBoost();
-        
-        // Aquí faltaría llamar a tu función de rotación si la tienes
-        // HandleRotation(); 
     }
-
-    public void HandleInput()
-    {
-        // 4. CAMBIO DE INPUT: Ahora detectamos el GATILLO DERECHO
-        // Si el gatillo está presionado, activamos el boost.
-        // Si se suelta, isBoosting es false y el avión desacelerará solo.
-        isBoosting = IsRightTriggerPressed();
-    }
-
     public void HandleBoost()
     {
         // Acelerar o frenar
@@ -83,9 +62,8 @@ public class VRPlayerController : MonoBehaviour
 
         // Avanzar usando la dirección real del avión
         Vector3 forwardDir = transform.forward;
-        characterController.Move(forwardDir * currentBoostSpeed * Time.deltaTime);
+        characterController.Move(forwardDir * (currentBoostSpeed * Time.deltaTime));
     }
-
     public void ResetToStart()
     {
         transform.position = initialPosition;
@@ -95,22 +73,9 @@ public class VRPlayerController : MonoBehaviour
         canControl = false; // <--- Bloqueamos el control al reiniciar
         cameraFollow.ResetCamera();
     }
-
-    // ---------------------------------------------------------
-    // 5. NUEVA FUNCIÓN: DETECTAR GATILLO VR
-    // ---------------------------------------------------------
-    private bool IsRightTriggerPressed()
+    public void SetBoost(bool state)
     {
-        // Obtenemos el mando derecho
-        InputDevice rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-        
-        // Verificamos si es válido y leemos el valor del gatillo (0 a 1)
-        if (rightHand.isValid && rightHand.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
-        {
-            // Retorna TRUE si presionamos más del 10% del gatillo
-            return triggerValue > 0.1f; 
-        }
-
-        return false;
+        isBoosting = state;
     }
+
 }
